@@ -23,16 +23,19 @@ public class User {
 
 	
 	public User() {
-		
 	}
 	
 	@Id
 	@Column(name="id_cliente",nullable=false,updatable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	public  Long getId() {
 		return id;
 	}
 	
+/*	public void setId(Long id) {
+		this.id = id;
+	}*/
 
 
 	@Column(name="nome_cliente",nullable=false,length=30)
