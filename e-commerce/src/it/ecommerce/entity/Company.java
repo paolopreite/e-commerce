@@ -16,7 +16,6 @@ public class Company {
 	private String descrizione;
 	
 	public Company() {
-//		this.setId(PrimaryKey.generateId());
 	}
 
 	@Id
@@ -25,9 +24,7 @@ public class Company {
 		return id;
 	}
 
-/*	public void setId(Long id) {
-		this.id = id;
-	}*/
+
 	
 	@Column(name="rs_company",nullable=false,length=50)
 	public String getRagione_sociale() {

@@ -20,9 +20,8 @@ public class User {
 	private String cap;
 
 	
-	public User() 
-	{
-//		this.setId(PrimaryKey.generateId());
+	public User() {
+		
 	}
 	
 	@Id
@@ -31,9 +30,7 @@ public class User {
 		return id;
 	}
 	
-/*	public  void setId(Long id) {
-		this.id = id;
-	}*/
+
 
 	@Column(name="nome_cliente",nullable=false,length=30)
 	public String getNome() {

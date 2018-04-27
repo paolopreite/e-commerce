@@ -13,9 +13,9 @@ public class Role {
 	private String nome;
 	private String descrizione;
 
-/*	public Role() {
-		this.setId(PrimaryKey.generateId());
-	}*/
+	public Role() {
+		
+	}
 	
 	@Id
 	@Column(name="id_role",nullable=false,updatable=false)
@@ -23,9 +23,6 @@ public class Role {
 		return id;
 	}
 
-/*	public  void setId(Long id) {
-		this.id = id;
-	}*/
 
 	@Column(name="nome_role",nullable=false,length=30)
 	public String getNome() {
