@@ -26,7 +26,7 @@ public class User {
 	}
 	
 	@Id
-	@Column(name="id_cliente",nullable=false,updatable=false)
+	@Column(name="id",nullable=false,updatable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	
 	public  Long getId() {
@@ -38,7 +38,7 @@ public class User {
 	}
 
 
-	@Column(name="nome_cliente",nullable=false,length=30)
+	@Column(name="nome",nullable=false,length=30)
 	public String getNome() {
 		return nome;
 	}
@@ -47,7 +47,7 @@ public class User {
 		this.nome = nome;
 	}
 
-	@Column(name="cognome_cliente",nullable=false,length=30)
+	@Column(name="cognome",nullable=false,length=30)
 	public String getCognome() {
 		return cognome;
 	}
@@ -56,7 +56,7 @@ public class User {
 		this.cognome = cognome;
 	}
 
-	@Column(name="username_cliente",nullable=false,length=20)
+	@Column(name="username",nullable=false,length=20)
 	public String getUsername() {
 		return username;
 	}
@@ -65,7 +65,7 @@ public class User {
 		this.username = username;
 	}
 
-	@Column(name="password_cliente",nullable=false,length=8)
+	@Column(name="password",nullable=false,length=8)
 	public String getPassword() {
 		return password;
 	}
@@ -74,7 +74,7 @@ public class User {
 		this.password = password;
 	}
 
-	@Column(name="country_cliente",nullable=false,length=30)
+	@Column(name="country",nullable=false,length=30)
 	public final String getCountry() {
 		return country;
 	}
@@ -83,7 +83,7 @@ public class User {
 		this.country = country;
 	}
 
-	@Column(name="city_cliente",nullable=false,length=30)
+	@Column(name="city",nullable=false,length=30)
 	public final String getCity() {
 		return city;
 	}
@@ -92,7 +92,7 @@ public class User {
 		this.city = city;
 	}
 
-	@Column(name="address_cliente",nullable=false,length=100)
+	@Column(name="address",nullable=false,length=100)
 	public final String getAddress() {
 		return address;
 	}
@@ -101,7 +101,7 @@ public class User {
 		this.address = address;
 	}
 
-	@Column(name="cap_cliente",nullable=false,length=10)
+	@Column(name="cap",nullable=false,length=10)
 	public final String getCap() {
 		return cap;
 	}

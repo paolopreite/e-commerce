@@ -11,8 +11,8 @@ import javax.persistence.Table;
 @Table(name="item")
 public class Item {
 	
-	private Long iditem;
-	private String desc_item; 
+	private Long id;
+	private String descrizione; 
 	private String id_company;
 
 	
@@ -20,23 +20,23 @@ public class Item {
 	}
 
 	@Id
-	@Column(name="id_item",nullable=false,updatable=false)
+	@Column(name="id",nullable=false,updatable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getIditem() {
-		return iditem;
+		return id;
 	}
 	
 	public void setiditem(Long id) {
-		this.iditem = id;
+		this.id = id;
 	}
 
-	@Column(name="desc_item",nullable=false,length=50)
+	@Column(name="descrizione",nullable=false,length=50)
 	public final String getdesc_item() {
-		return desc_item;
+		return descrizione;
 	}
 
-	public final void setdesc_item(String desc_item) {
-		this.desc_item = desc_item;
+	public final void setdesc_item(String descrizione) {
+		this.descrizione = descrizione;
 	}
 
 	@Column(name="id_company",nullable=false,updatable=false)

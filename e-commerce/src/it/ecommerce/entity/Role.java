@@ -20,7 +20,7 @@ public class Role {
 	}
 	
 	@Id
-	@Column(name="id_role",nullable=false,updatable=false)
+	@Column(name="id",nullable=false,updatable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
@@ -30,7 +30,7 @@ public class Role {
 		this.id = id;
 	}
 
-	@Column(name="nome_role",nullable=false,length=30)
+	@Column(name="nome",nullable=false,length=30)
 	public String getNome() {
 		return nome;
 	}
@@ -39,7 +39,7 @@ public class Role {
 		this.nome = nome;
 	}
 
-	@Column(name="descrizione_role",nullable=false,length=100)
+	@Column(name="descrizione",nullable=false,length=100)
 	public  String getDescrizione() {
 		return descrizione;
 	}
