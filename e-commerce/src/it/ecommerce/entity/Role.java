@@ -26,6 +26,9 @@ public class Role {
 		return id;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	@Column(name="nome_role",nullable=false,length=30)
 	public String getNome() {

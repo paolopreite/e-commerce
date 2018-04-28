@@ -33,9 +33,9 @@ public class User {
 		return id;
 	}
 	
-/*	public void setId(Long id) {
+	public void setId(Long id) {
 		this.id = id;
-	}*/
+	}
 
 
 	@Column(name="nome_cliente",nullable=false,length=30)

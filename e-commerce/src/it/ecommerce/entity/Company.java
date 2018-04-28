@@ -27,7 +27,9 @@ public class Company {
 		return id;
 	}
 
-
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 	@Column(name="rs_company",nullable=false,length=50)
 	public String getRagione_sociale() {

@@ -25,6 +25,10 @@ public class Item {
 	public Long getIditem() {
 		return iditem;
 	}
+	
+	public void setiditem(Long id) {
+		this.iditem = id;
+	}
 
 	@Column(name="desc_item",nullable=false,length=50)
 	public final String getdesc_item() {
