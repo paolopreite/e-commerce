@@ -11,41 +11,41 @@ import javax.persistence.Table;
 @Table(name="item")
 public class Item {
 	
-	private Long iditem;
-	private String desc_item; 
-	private String id_company;
+	private Long id;
+	private String descrizione; 
+	private String idCompany;
 
 	
 	public Item() {
 	}
 
 	@Id
-	@Column(name="id_item",nullable=false,updatable=false)
+	@Column(name="id",nullable=false,updatable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Long getIditem() {
-		return iditem;
+	public Long getId() {
+		return id;
 	}
 	
-	public void setiditem(Long id) {
-		this.iditem = id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	@Column(name="desc_item",nullable=false,length=50)
-	public final String getdesc_item() {
-		return desc_item;
+	@Column(name="descrizione",nullable=false,length=50)
+	public final String getDescrizione() {
+		return descrizione;
 	}
 
-	public final void setdesc_item(String desc_item) {
-		this.desc_item = desc_item;
+	public final void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
 	}
 
 	@Column(name="id_company",nullable=false,updatable=false)
-	public final String getid_company() {
-		return id_company;
+	public final String getIdCompany() {
+		return idCompany;
 	}
 
-	public final void setid_company(String id_company) {
-		this.id_company = id_company;
+	public final void setIdCompany(String idCompany) {
+		this.idCompany = idCompany;
 	}
 
 

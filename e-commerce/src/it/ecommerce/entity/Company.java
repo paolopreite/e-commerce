@@ -12,16 +12,16 @@ import javax.persistence.Table;
 public class Company {
 	
 	private Long id;
-	private String ragione_sociale; 
-	private String partita_iva;
-	private String codice_fiscale;
+	private String ragioneSociale; 
+	private String partitaIva;
+	private String codiceFiscale;
 	private String descrizione;
 	
 	public Company() {
 	}
 
 	@Id
-	@Column(name="id_company",nullable=false,updatable=false)
+	@Column(name="id",nullable=false,updatable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
@@ -31,34 +31,34 @@ public class Company {
 		this.id = id;
 	}
 	
-	@Column(name="rs_company",nullable=false,length=50)
-	public String getRagione_sociale() {
-		return ragione_sociale;
+	@Column(name="ragione_sociale",nullable=false,length=150)
+	public String getRagioneSociale() {
+		return ragioneSociale;
 	}
 
-	public void setRagione_sociale(String ragione_sociale) {
-		this.ragione_sociale = ragione_sociale;
+	public void setRagioneSociale(String ragioneSociale) {
+		this.ragioneSociale = ragioneSociale;
 	}
 
-	@Column(name="pi_company",nullable=false,length=50)
-	public String getPartita_iva() {
-		return partita_iva;
+	@Column(name="partita_iva",nullable=false,length=50)
+	public String getPartitaIva() {
+		return partitaIva;
 	}
 
-	public void setPartita_iva(String partita_iva) {
-		this.partita_iva = partita_iva;
+	public void setPartitaIva(String partitaIva) {
+		this.partitaIva = partitaIva;
 	}
 
-	@Column(name="cf_company",nullable=false,length=30)
-	public String getCodice_fiscale() {
-		return codice_fiscale;
+	@Column(name="codice_fiscale",nullable=false,length=30)
+	public String getCodiceFiscale() {
+		return codiceFiscale;
 	}
 
-	public void setCodice_fiscale(String codice_fiscale) {
-		this.codice_fiscale = codice_fiscale;
+	public void setCodiceFiscale(String codiceFiscale) {
+		this.codiceFiscale = codiceFiscale;
 	}
 
-	@Column(name="desc_company",nullable=false,length=100)
+	@Column(name="descrizione",nullable=false,length=100)
 	public String getDescrizione() {
 		return descrizione;
 	}
