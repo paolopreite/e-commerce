@@ -10,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import it.ecommerce.entity.User;
 
 
-
 /**
  * Session Bean implementation class UserBean
  */

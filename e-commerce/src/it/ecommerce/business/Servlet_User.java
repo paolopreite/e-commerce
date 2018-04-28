@@ -36,14 +36,14 @@ public class Servlet_User extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		User u = new User();
-		u.setNome("Paolo");
-		u.setCognome("Preite");
-		u.setAddress("Via Ronco");
+		u.setNome("Luca");
+		u.setCognome("Verdi");
+		u.setAddress("Via Roma");
 		u.setCap("10100");
 		u.setCity("Roma");
 		u.setCountry("Italia");
-		u.setUsername("Ppreite");
-		u.setPassword("ciccio");
+		u.setUsername("LVerdi");
+		u.setPassword("pwd");
 		userBean.addUser(u);
 	}
 
