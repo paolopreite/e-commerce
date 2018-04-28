@@ -2,6 +2,8 @@ package it.ecommerce.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,20 +22,21 @@ public class User {
 	private String cap;
 
 	
-	public User() 
-	{
-//		this.setId(PrimaryKey.generateId());
+	public User() {
 	}
 	
 	@Id
 	@Column(name="id_cliente",nullable=false,updatable=false)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	public  Long getId() {
 		return id;
 	}
 	
-/*	public  void setId(Long id) {
+	public void setId(Long id) {
 		this.id = id;
-	}*/
+	}
+
 
 	@Column(name="nome_cliente",nullable=false,length=30)
 	public String getNome() {
@@ -107,20 +110,5 @@ public class User {
 		this.cap = cap;
 	}
 
-	
-	/*CREATE TABLE `e_commerce`.`user` (
-			  `id_cliente` INT NOT NULL,
-			  `nome_cliente` VARCHAR(45) NOT NULL,
-			  `cognome_cliente` VARCHAR(45) NOT NULL,
-			  `username_cliente` VARCHAR(45) NOT NULL,
-			  `password_cliente` VARCHAR(45) NOT NULL,
-			  `country_cliente` VARCHAR(45) NOT NULL,
-			  `city_cliente` VARCHAR(45) NOT NULL,
-			  `address_cliente` VARCHAR(45) NOT NULL,
-			  `cap_cliente` VARCHAR(45) NOT NULL,
-			  PRIMARY KEY (`id_cliente`))
-			ENGINE = InnoDB
-			DEFAULT CHARACTER SET = utf8mb4;*/
-	
 	
 }

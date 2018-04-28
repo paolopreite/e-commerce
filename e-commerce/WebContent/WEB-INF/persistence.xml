@@ -1,0 +1,6 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+	<persistence-unit name="webPersistence">
+		<jta-data-soure>e_commerce</jta-data-soure>
+			<property name="openejb.jpa.auto-scan" value="true" />
+	</persistence-unit>
+</persistence>

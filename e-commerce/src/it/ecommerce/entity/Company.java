@@ -2,6 +2,8 @@ package it.ecommerce.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,18 +18,18 @@ public class Company {
 	private String descrizione;
 	
 	public Company() {
-//		this.setId(PrimaryKey.generateId());
 	}
 
 	@Id
 	@Column(name="id_company",nullable=false,updatable=false)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
 
-/*	public void setId(Long id) {
+	public void setId(Long id) {
 		this.id = id;
-	}*/
+	}
 	
 	@Column(name="rs_company",nullable=false,length=50)
 	public String getRagione_sociale() {
@@ -64,16 +66,5 @@ public class Company {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-
-
-/*	CREATE TABLE `e_commerce`.`company` (
-			  `id_company` INT NOT NULL,
-			  `rs_company` VARCHAR(45) NOT NULL,
-			  `pi_company` VARCHAR(45) NOT NULL,
-			  `cf_company` VARCHAR(45) NOT NULL,
-			  `desc_company` VARCHAR(45) NOT NULL,
-			  PRIMARY KEY (`id_company`))
-			ENGINE = InnoDB
-			DEFAULT CHARACTER SET = utf8mb4;*/
 
 }
