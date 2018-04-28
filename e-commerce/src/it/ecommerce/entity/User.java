@@ -83,7 +83,7 @@ public class User {
 		this.country = country;
 	}
 
-	@Column(name="city",nullable=false,length=30)
+	@Column(name="city",nullable=false,length=100)
 	public final String getCity() {
 		return city;
 	}
@@ -109,6 +109,8 @@ public class User {
 	public final void setCap(String cap) {
 		this.cap = cap;
 	}
+
+
 
 	
 }

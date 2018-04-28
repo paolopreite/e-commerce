@@ -31,30 +31,30 @@ public class Company {
 		this.id = id;
 	}
 	
-	@Column(name="ragioneSociale",nullable=false,length=50)
-	public String getRagione_sociale() {
+	@Column(name="ragione_sociale",nullable=false,length=150)
+	public String getRagioneSociale() {
 		return ragioneSociale;
 	}
 
-	public void setRagione_sociale(String ragioneSociale) {
+	public void setRagioneSociale(String ragioneSociale) {
 		this.ragioneSociale = ragioneSociale;
 	}
 
-	@Column(name="partitaIva",nullable=false,length=50)
-	public String getPartita_iva() {
+	@Column(name="partita_iva",nullable=false,length=50)
+	public String getPartitaIva() {
 		return partitaIva;
 	}
 
-	public void setPartita_iva(String partitaIva) {
+	public void setPartitaIva(String partitaIva) {
 		this.partitaIva = partitaIva;
 	}
 
-	@Column(name="codiceFiscale",nullable=false,length=30)
-	public String getCodice_fiscale() {
+	@Column(name="codice_fiscale",nullable=false,length=30)
+	public String getCodiceFiscale() {
 		return codiceFiscale;
 	}
 
-	public void setCodice_fiscale(String codiceFiscale) {
+	public void setCodiceFiscale(String codiceFiscale) {
 		this.codiceFiscale = codiceFiscale;
 	}
 
