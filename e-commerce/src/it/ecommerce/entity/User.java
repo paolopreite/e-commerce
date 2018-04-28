@@ -111,19 +111,4 @@ public class User {
 	}
 
 	
-	/*CREATE TABLE `e_commerce`.`user` (
-			  `id_cliente` INT NOT NULL,
-			  `nome_cliente` VARCHAR(45) NOT NULL,
-			  `cognome_cliente` VARCHAR(45) NOT NULL,
-			  `username_cliente` VARCHAR(45) NOT NULL,
-			  `password_cliente` VARCHAR(45) NOT NULL,
-			  `country_cliente` VARCHAR(45) NOT NULL,
-			  `city_cliente` VARCHAR(45) NOT NULL,
-			  `address_cliente` VARCHAR(45) NOT NULL,
-			  `cap_cliente` VARCHAR(45) NOT NULL,
-			  PRIMARY KEY (`id_cliente`))
-			ENGINE = InnoDB
-			DEFAULT CHARACTER SET = utf8mb4;*/
-	
-	
 }

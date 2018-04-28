@@ -65,15 +65,4 @@ public class Company {
 		this.descrizione = descrizione;
 	}
 
-
-/*	CREATE TABLE `e_commerce`.`company` (
-			  `id_company` INT NOT NULL,
-			  `rs_company` VARCHAR(45) NOT NULL,
-			  `pi_company` VARCHAR(45) NOT NULL,
-			  `cf_company` VARCHAR(45) NOT NULL,
-			  `desc_company` VARCHAR(45) NOT NULL,
-			  PRIMARY KEY (`id_company`))
-			ENGINE = InnoDB
-			DEFAULT CHARACTER SET = utf8mb4;*/
-
 }

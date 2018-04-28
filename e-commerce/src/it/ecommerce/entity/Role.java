@@ -45,14 +45,4 @@ public class Role {
 		this.descrizione = descrizione;
 	}
 
-
-/*	CREATE TABLE `e_commerce`.`role` (
-			  `id_role` INT NOT NULL,
-			  `nome_role` VARCHAR(45) NOT NULL,
-			  `descrizione_role` VARCHAR(45) NOT NULL,
-			  PRIMARY KEY (`id_role`))
-			ENGINE = InnoDB
-			DEFAULT CHARACTER SET = utf8mb4;*/
-	
-
 }
