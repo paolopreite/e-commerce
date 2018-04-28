@@ -1,0 +1,10 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+	<persistence-unit name="ecommercePersistence">
+		<jta-data-source>connessioneECommerce</jta-data-source>
+		
+		<properties>
+			<property name="openejb.jpa.auto-scan" value="true" />
+			<!-- property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" /-->
+		</properties>
+	</persistence-unit>
+</persistence>
