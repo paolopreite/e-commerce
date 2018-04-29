@@ -31,7 +31,6 @@ public class UserBean implements UserBeanLocal {
 	@Override
 	public void updateUser(Long id) {
 		User u= getUserByID(id);
-		u.setAddress("aggiornato");
 		em.merge(u);
 	}
 
