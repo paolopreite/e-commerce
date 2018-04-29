@@ -1,3 +1,5 @@
+//Author:Vanore
+
 package it.ecommerce.entity;
 
 import javax.persistence.Column;
@@ -10,7 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="user")
 public class User {
-
+  
 	private Long id;
 	private String nome;
 	private String cognome;
