@@ -10,8 +10,8 @@ import it.ecommerce.entity.User;
 public interface UserBeanLocal {
 
 	public void addUser(User u);
-	public void updateUser(User u);
-	public void deleteUser(User u);
+	public void updateUser(Long id);
+	public void deleteUser(Long id);
 	public User getUserByID(Long id);
 	public List<User> findAllUser();
 }

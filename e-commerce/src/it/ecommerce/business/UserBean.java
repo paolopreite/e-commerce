@@ -29,12 +29,15 @@ public class UserBean implements UserBeanLocal {
 	}
 
 	@Override
-	public void updateUser(User u) {
+	public void updateUser(Long id) {
+		User u= getUserByID(id);
+		u.setAddress("aggiornato");
 		em.merge(u);
 	}
 
 	@Override
-	public void deleteUser(User u) {
+	public void deleteUser(Long id) {
+		User u= getUserByID(id);
 		em.remove(u);
 	}
 
