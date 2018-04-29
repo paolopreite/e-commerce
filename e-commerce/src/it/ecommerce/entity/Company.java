@@ -18,7 +18,6 @@ public class Company {
 	private String descrizione;
 	
 	public Company() {
-
 	}
 
 	@Id
