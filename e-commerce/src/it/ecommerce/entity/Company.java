@@ -23,7 +23,7 @@ public class Company {
 	}
 
 	@Id
-	@Column(name="id",nullable=false,updatable=false)
+	@Column(name="id_company",nullable=false,updatable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getId() {
 		return id;

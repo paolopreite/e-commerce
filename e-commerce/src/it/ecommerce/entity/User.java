@@ -2,6 +2,7 @@
 
 package it.ecommerce.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,23 +25,24 @@ public class User {
 	private String city;
 	private String address;
 	private String cap;
-//	private Role role;
+	private Role role;
+	private Company company;
 
 	
 	public User() {
 	}
 	
 	@Id
-	@Column(name="id",nullable=false,updatable=false)
+	@Column(name="id_user",nullable=false,updatable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	
 	public  Long getId() {
 		return id;
 	}
 	
-/*	public void setId(Long id) {
+	public void setId(Long id) {
 		this.id = id;
-	}*/
+	}
 
 
 	@Column(name="nome",nullable=false,length=30)
@@ -115,15 +117,27 @@ public class User {
 		this.cap = cap;
 	}
 
-/*	@ManyToOne
-	@JoinColumn(name="id")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="id_role")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public final Role getRole() {
 		return role;
-	}*/
+	}
 
-/*	public final void setRole(Role role) {
+	public final void setRole(Role role) {
 		this.role = role;
-	}*/
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="id_company")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	public final Company getCompany() {
+		return company;
+	}
+
+	public final void setCompany(Company company) {
+		this.company = company;
+	}
 
 
 

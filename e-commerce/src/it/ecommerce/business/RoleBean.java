@@ -23,20 +23,22 @@ public class RoleBean implements RoleBeanLocal {
        
     }
 
-	@Override
+
 	public void addeRole(Role r) {
 		em.persist(r);
 		
 	}
 	
 	@Override
-	public void updateRole(Role r) {
+	public void updateRole(Long id) {
+		Role r= getRoleByID(id);
 		em.merge(r);
 		
 	}
 
 	@Override
-	public void deleteRole(Role r) {
+	public void deleteRole(Long id) {
+		Role r= getRoleByID(id);
 		em.remove(r);
 		
 	}

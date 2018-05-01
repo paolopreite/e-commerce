@@ -30,13 +30,14 @@ public class CompanyBean implements CompanyBeanLocal {
 	}
 
 	@Override
-	public void updateCompany(Company c) {
-		
+	public void updateCompany(Long id) {
+		Company c= this.getCompanybyID(id);
 		em.merge(c);
 	}
 
 	@Override
-	public void deleteCompany(Company c) {
+	public void deleteCompany(Long id) {
+		Company c= getCompanybyID(id);
 		em.remove(c);
 		
 	}

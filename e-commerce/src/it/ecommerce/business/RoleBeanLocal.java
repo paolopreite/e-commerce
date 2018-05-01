@@ -10,8 +10,8 @@ import it.ecommerce.entity.Role;
 public interface RoleBeanLocal {
 
 	public void addeRole(Role r);
-	public void updateRole(Role r);
-	public void deleteRole(Role r);
+	public void updateRole(Long id);
+	public void deleteRole(Long id);
 	public Role getRoleByID(Long id);
 	public List<Role> findAllRole();
 }

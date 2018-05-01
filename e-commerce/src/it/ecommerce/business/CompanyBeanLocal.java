@@ -10,8 +10,8 @@ import it.ecommerce.entity.Company;
 public interface CompanyBeanLocal {
 
 	public void addCompany(Company c);
-	public void updateCompany(Company c);
-	public void deleteCompany(Company c);
+	public void updateCompany(Long id);
+	public void deleteCompany(Long id);
 	public Company getCompanybyID(Long id);
 	public List<Company> findAllCompany();
 }
