@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://primefaces.org/ui">
+	<h:head>
+		<title>e-commerce</title>
+	</h:head>
+	<h:body>
+		<h1>Tabella Utenti</h1>
+		
+			<ui:dataTable
+				value="#{usermanager.usersList}" var="elemento" id="tabella">
+				<ui:column>
+					<f:facet name="header">
+						<h:outputText value="Nome"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{elemento.nome}"></h:outputText>
+				</ui:column>
+				<ui:column>
+					<f:facet name="header">
+						<h:outputText value="Cognome"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{elemento.cognome}"></h:outputText>
+				</ui:column>
+			</ui:dataTable>
+			<h:form>
+			<ui:dialog widgetVar="inserimento" width="400" height="500" modal="true">
+				<ui:panel>
+					<ui:panelGrid columns="2">
+						<h:outputLabel value="Nome" />
+						<ui:inputText id="nome" value="#{usermanager.user.nome}" required="true"/>
+						<h:outputLabel value="Cognome #{usermanager.user.userRole.id}" />
+						<ui:inputText id="cognome" value="#{usermanager.user.cognome}" required="true" />
+					</ui:panelGrid>
+					<ui:commandButton actionListener="#{usermanager.saveUser}" onclick="inserimento.close();" value="Salva Utente"></ui:commandButton>
+				</ui:panel>
+			</ui:dialog>
+			<ui:commandButton type="button" onclick="PF('inserimento').show();" value="Aggiungi utente"></ui:commandButton>
+		</h:form>
+	</h:body>
+</html>
