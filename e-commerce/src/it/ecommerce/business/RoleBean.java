@@ -2,6 +2,7 @@ package it.ecommerce.business;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,32 +10,51 @@ import javax.persistence.Query;
 
 import it.ecommerce.entity.Role;
 
+/**
+ * Session Bean implementation class RoleBean
+ */
 @Stateless
-public class RoleBean implements RoleLocal {
+@LocalBean
+public class RoleBean implements RoleBeanLocal {
 
-	@PersistenceContext(unitName="ecommercePersistence")
-	EntityManager manager;
+	@PersistenceContext(unitName="webPersistence")
+	EntityManager em;
 	
-	public void addRole(Role r) {
-		manager.persist(r);
+    public RoleBean() {
+       
+    }
+
+	@Override
+	public void addeRole(Role r) {
+		em.persist(r);
+		
 	}
 	
+	@Override
 	public void updateRole(Role r) {
-		manager.merge(r);
+		em.merge(r);
+		
 	}
-	
-	public void deleteRole(Integer id) {
-		Role r = getRole(id);
-		manager.remove(r);
+
+	@Override
+	public void deleteRole(Role r) {
+		em.remove(r);
+		
 	}
-	
-	public Role getRole(Integer id) {
-		return manager.find(Role.class, id);
+
+	@Override
+	public Role getRoleByID(Long id) {
+		return em.find(Role.class, id);
+		
 	}
-	
-	public List<Role> getRoles() {
-		Query q = manager.createQuery("SELECT r FROM Role r");
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Role> findAllRole() {
+		Query q = em.createQuery("SELECT r FROM Role r");
 		
 		return q.getResultList();
+		
 	}
+
 }
