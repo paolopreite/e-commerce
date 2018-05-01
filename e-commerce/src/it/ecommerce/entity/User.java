@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +24,7 @@ public class User {
 	private String city;
 	private String address;
 	private String cap;
+//	private Role role;
 
 	
 	public User() {
@@ -35,9 +38,9 @@ public class User {
 		return id;
 	}
 	
-	public void setId(Long id) {
+/*	public void setId(Long id) {
 		this.id = id;
-	}
+	}*/
 
 
 	@Column(name="nome",nullable=false,length=30)
@@ -111,6 +114,16 @@ public class User {
 	public final void setCap(String cap) {
 		this.cap = cap;
 	}
+
+/*	@ManyToOne
+	@JoinColumn(name="id")
+	public final Role getRole() {
+		return role;
+	}*/
+
+/*	public final void setRole(Role role) {
+		this.role = role;
+	}*/
 
 
 
