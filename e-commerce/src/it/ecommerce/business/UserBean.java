@@ -45,7 +45,6 @@ public class UserBean implements UserBeanLocal {
 		em.remove(u);
 	}
 
-	@Override
 	
 	@GET
 	@Path(value="/user/lista/{id_user}")
@@ -56,7 +55,6 @@ public class UserBean implements UserBeanLocal {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	
 	@GET
 	@Path(value="/user/lista")

@@ -48,7 +48,6 @@ public class RoleBean implements RoleBeanLocal {
 		
 	}
 
-	@Override
 	@GET
 	@Path(value="/role/lista/{id_role}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -58,7 +57,6 @@ public class RoleBean implements RoleBeanLocal {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	@GET
 	@Path(value="/role/lista")
 	@Produces(MediaType.APPLICATION_JSON)

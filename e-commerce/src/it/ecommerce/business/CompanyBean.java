@@ -47,7 +47,7 @@ public class CompanyBean implements CompanyBeanLocal {
 		
 	}
 
-	@Override
+
 	@GET
 	@Path(value="/company/lista/{id_company}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -57,7 +57,6 @@ public class CompanyBean implements CompanyBeanLocal {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	@GET
 	@Path(value="/company/lista")
 	@Produces(MediaType.APPLICATION_JSON)
