@@ -6,6 +6,11 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import it.ecommerce.entity.User;
 
@@ -41,13 +46,21 @@ public class UserBean implements UserBeanLocal {
 	}
 
 	@Override
-	public User getUserByID(Long id) {
+	
+	@GET
+	@Path(value="/user/lista/{id_user}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getUserByID(@PathParam("id_user")Long id) {
 		return em.find(User.class, id);
 		
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
+	
+	@GET
+	@Path(value="/user/lista")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> findAllUser() {
 		return em.createQuery("SELECT u FROM User u").getResultList();
 	}

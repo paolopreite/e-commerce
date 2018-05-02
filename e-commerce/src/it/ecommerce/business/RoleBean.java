@@ -6,6 +6,11 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import it.ecommerce.entity.Role;
 
@@ -44,13 +49,19 @@ public class RoleBean implements RoleBeanLocal {
 	}
 
 	@Override
-	public Role getRoleByID(Long id) {
+	@GET
+	@Path(value="/role/lista/{id_role}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Role getRoleByID(@PathParam("id_role")Long id) {
 		return em.find(Role.class, id);
 		
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@GET
+	@Path(value="/role/lista")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Role> findAllRole() {
 		return em.createQuery("SELECT r FROM Role r").getResultList();
 		
