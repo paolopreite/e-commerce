@@ -18,7 +18,7 @@ public class UserManagedBean implements Serializable {
 
 	@EJB
 	private UserBeanLocal userBusinnes;
-	private User user;
+	private User user   ;
 	
 	public UserManagedBean() {
 		super();
