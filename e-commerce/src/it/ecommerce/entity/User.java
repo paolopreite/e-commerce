@@ -5,7 +5,6 @@ package it.ecommerce.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -116,8 +115,9 @@ public class User {
 		this.cap = cap;
 	}*/
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="id_role")
+	@ManyToOne()
+	@JoinColumn(name="id_role")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
     public Role getUserRole() {
         return userRole;
     }

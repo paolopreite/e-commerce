@@ -20,23 +20,52 @@ public class UserManagedBean implements Serializable {
 
 	@EJB
 	private UserBeanLocal userBusinnes;
-	private User user   ;
+	@EJB
+	private RoleBeanLocal roleBusinnes;
+	private String nome;
+	private String cognome;
+	private Long idRole;
 	
 	public UserManagedBean() {
-		super();
-		user = new User();
-		user.setUserRole(new Role());
+
 	}
 
-	public User getUser() {
-		return user;
+	public String getNome() {
+		return nome;
 	}
-	
-	public void setUser(User u) {
-		user = u;
+
+
+	public void setNome(String n) {
+		nome = n;
 	}
+
+
+	public String getCognome() {
+		return cognome;
+	}
+
+
+	public void setCognome(String c) {
+		cognome = c;
+	}
+
+
+	public Long getIdRole() {
+		return idRole;
+	}
+
+
+	public void setIdRole(Long id) {
+		idRole = id;
+	}
+
 
 	public void saveUser () {
+		User user = new User();
+	    user.setCognome(getCognome());
+	    user.setNome(getNome());
+	    user.setUserRole(roleBusinnes.getRoleByID(idRole));
+
 		userBusinnes.addUser(user);
 }
 	public List<User> getUsersList() {
