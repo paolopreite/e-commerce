@@ -7,7 +7,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import it.ecommerce.business.RoleBeanLocal;
 import it.ecommerce.business.UserBeanLocal;
+import it.ecommerce.entity.Role;
 import it.ecommerce.entity.User;
 
 
@@ -18,8 +20,20 @@ public class UserManagedBean implements Serializable {
 
 	@EJB
 	private UserBeanLocal userBusinnes;
-	private User user   ;
+	@EJB
+	private RoleBeanLocal roleBusinnes;
 	
+	private User user   ;
+	private Long idRole   ;
+	
+	public Long getIdRole() {
+		return idRole;
+	}
+
+	public void setIdRole(Long idRole) {
+		this.idRole = idRole;
+	}
+
 	public UserManagedBean() {
 		super();
 		user = new User();
@@ -34,6 +48,7 @@ public class UserManagedBean implements Serializable {
 	}
 
 	public void saveUser () {
+		user.setUserRole(roleBusinnes.getRoleByID(idRole));
 		userBusinnes.addUser(user);
 }
 	public List<User> getUsersList() {

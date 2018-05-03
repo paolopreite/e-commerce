@@ -62,7 +62,7 @@ public class User {
 		this.cognome = cognome;
 	}
 
-	@Column(name="username",nullable=false,length=20)
+	/*@Column(name="username",nullable=false,length=20)
 	public String getUsername() {
 		return username;
 	}
@@ -114,7 +114,7 @@ public class User {
 
 	public final void setCap(String cap) {
 		this.cap = cap;
-	}
+	}*/
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id_role")
