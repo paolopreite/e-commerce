@@ -41,8 +41,8 @@ public class UserBean implements UserBeanLocal {
 
 	@Override
 	public User getUserByID(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(User.class, id);
+		
 	}
 
 	@Override
