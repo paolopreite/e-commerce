@@ -1,46 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:ui="http://primefaces.org/ui">
+	  xmlns:ui="http://primefaces.org/ui"
+	  xmlns:u="http://java.sun.com/jsf/facelets">
 	<h:head>
-		<title>e-commerce</title>
+		<title>Tabella utenti</title>
 	</h:head>
 	<h:body>
-		<h1>Tabella Utenti</h1>
-		
-			<ui:dataTable
-				value="#{usermanager.usersList}" var="elemento" id="tabella">
-				<ui:column>
-					<f:facet name="header">
-						<h:outputText value="Nome"></h:outputText>
-					</f:facet>
-					<h:outputText value="#{elemento.nome}"></h:outputText>
-				</ui:column>
-				<ui:column>
-					<f:facet name="header">
-						<h:outputText value="Cognome"></h:outputText>
-					</f:facet>
-					<h:outputText value="#{elemento.cognome}"></h:outputText>
-				</ui:column>
-			</ui:dataTable>
-			<h:form>
-			<ui:dialog widgetVar="inserimento" width="400" height="500" modal="true">
-				<ui:panel>
-					<ui:panelGrid columns="2">
-						<h:outputLabel value="Nome" />
-						<ui:inputText id="nome" value="#{usermanager.nome}" required="true"/>
-						<h:outputLabel value="Cognome" />
-						<ui:inputText id="cognome" value="#{usermanager.cognome}" required="true" />
-						<h:outputLabel value="Ruolo" />
-						<h:selectOneMenu value="#{usermanager.idRole}">
-   							<f:selectItems value="#{rolemanager.rolesList}" var="r"
-   							itemLabel="#{r.descrizione}" itemValue="#{r.id}" />
-   						</h:selectOneMenu>
-					</ui:panelGrid>
-					<ui:commandButton actionListener="#{usermanager.saveUser}" onclick="inserimento.close();" value="Salva Utente"></ui:commandButton>
-				</ui:panel>
-			</ui:dialog>
-			<ui:commandButton type="button" onclick="PF('inserimento').show();" value="Aggiungi utente"></ui:commandButton>
-		</h:form>
+		<u:composition template="template/default.xhtml">
+			<u:define name="content">
+				<h1>Tabella Utenti</h1>
+				<ui:dataTable
+					value="#{usermanager.usersList}" var="elemento" id="tabella">
+					<ui:column>
+						<f:facet name="header">
+							<h:outputText value="Nome"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{elemento.nome}"></h:outputText>
+					</ui:column>
+					<ui:column>
+						<f:facet name="header">
+							<h:outputText value="Cognome"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{elemento.cognome}"></h:outputText>
+					</ui:column>
+				</ui:dataTable>
+				<h:form>
+					<ui:dialog widgetVar="inserimento" width="400" height="500" modal="true">
+						<ui:panel>
+							<ui:panelGrid columns="2">
+								<h:outputLabel value="Nome" />
+								<ui:inputText id="nome" value="#{usermanager.nome}" required="true"/>
+								<h:outputLabel value="Cognome" />
+								<ui:inputText id="cognome" value="#{usermanager.cognome}" required="true" />
+								<h:outputLabel value="Ruolo" />
+								<h:selectOneMenu value="#{usermanager.idRole}">
+		   							<f:selectItems value="#{rolemanager.rolesList}" var="r"
+		   							itemLabel="#{r.descrizione}" itemValue="#{r.id}" />
+		   						</h:selectOneMenu>
+							</ui:panelGrid>
+							<ui:commandButton actionListener="#{usermanager.saveUser}" onclick="inserimento.close();" value="Salva Utente"></ui:commandButton>
+						</ui:panel>
+					</ui:dialog>
+					<ui:commandButton type="button" onclick="PF('inserimento').show();" value="Aggiungi utente"></ui:commandButton>
+				</h:form>
+			</u:define>
+		</u:composition>
 	</h:body>
 </html>
