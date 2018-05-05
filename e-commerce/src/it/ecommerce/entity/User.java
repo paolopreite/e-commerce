@@ -2,7 +2,6 @@
 
 package it.ecommerce.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -117,7 +116,7 @@ public class User {
 		this.cap = cap;
 	}
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne()//(cascade = CascadeType.ALL)*/
 	@JoinColumn(name="id_role")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public final Role getRole() {
@@ -128,7 +127,7 @@ public class User {
 		this.role = role;
 	}
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne()//(cascade = CascadeType.ALL)
 	@JoinColumn(name="id_company")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public final Company getCompany() {
@@ -138,8 +137,6 @@ public class User {
 	public final void setCompany(Company company) {
 		this.company = company;
 	}
-
-
 
 	
 }

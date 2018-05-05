@@ -29,7 +29,7 @@ public class RoleBean implements RoleBeanLocal {
     }
 
 
-	public void addeRole(Role r) {
+	public void addRole(Role r) {
 		em.persist(r);
 		
 	}
