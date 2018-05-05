@@ -12,12 +12,18 @@
 				<h1>Tabella Aziende</h1>
 				
 					<ui:dataTable
-						value="#{rolemanager.rolesList}" var="elemento" id="tabella">
+						value="#{companymanager.companiesList}" var="elemento" id="tabella">
 						<ui:column>
 							<f:facet name="header">
-								<h:outputText value="Nome"></h:outputText>
+								<h:outputText value="Ragione Sociale"></h:outputText>
 							</f:facet>
-							<h:outputText value="#{elemento.nome}"></h:outputText>
+							<h:outputText value="#{elemento.ragioneSociale}"></h:outputText>
+						</ui:column>
+						<ui:column>
+							<f:facet name="header">
+								<h:outputText value="Partita Iva"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{elemento.partitaIva}"></h:outputText>
 						</ui:column>
 						<ui:column>
 							<f:facet name="header">
@@ -27,22 +33,24 @@
 						</ui:column>
 						<ui:column>
 							<f:facet name="header">Azioni</f:facet>
-							<ui:commandButton value="Cancella" actionListener="#{rolemanager.deleteRole(elemento.id)}" update="tabella" />
+							<ui:commandButton value="Cancella" actionListener="#{companymanager.deleteCompany(elemento.id)}" update="tabella" />
 						</ui:column>
 					</ui:dataTable>
 					<h:form>
 						<ui:dialog widgetVar="inserimento" width="400" height="500" modal="true">
 							<ui:panel>
 								<ui:panelGrid columns="2">
-									<h:outputLabel value="Nome" />
-									<ui:inputText id="nome" value="#{rolemanager.role.nome}" required="true"/>
+									<h:outputLabel value="Ragione Sociale" />
+									<ui:inputText id="ragioneSociale" value="#{companymanager.ragioneSociale}" required="true"/>
+									<h:outputLabel value="Partita Iva" />
+									<ui:inputText id="partitaIva" value="#{companymanager.partitaIva}" required="true" />
 									<h:outputLabel value="Descrizione" />
-									<ui:inputText id="descrizione" value="#{rolemanager.role.descrizione}" required="true" />
+									<ui:inputText id="descrizione" value="#{companymanager.descrizione}" required="true" />
 								</ui:panelGrid>
-								<ui:commandButton actionListener="#{rolemanager.saveRole}" onclick="inserimento.close();" value="Salva Ruolo"></ui:commandButton>
+								<ui:commandButton actionListener="#{companymanager.saveCompany}" onclick="inserimento.close();" value="Salva Azienda"></ui:commandButton>
 							</ui:panel>
 						</ui:dialog>
-					<ui:commandButton type="button" onclick="PF('inserimento').show();" value="Aggiungi ruolo"></ui:commandButton>
+					<ui:commandButton type="button" onclick="PF('inserimento').show();" value="Aggiungi Azienda"></ui:commandButton>
 				</h:form>
 			</u:define>
 		</u:composition>

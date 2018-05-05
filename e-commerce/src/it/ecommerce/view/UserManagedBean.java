@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import it.ecommerce.business.CompanyBeanLocal;
 import it.ecommerce.business.RoleBeanLocal;
 import it.ecommerce.business.UserBeanLocal;
 import it.ecommerce.entity.Role;
@@ -22,9 +23,66 @@ public class UserManagedBean implements Serializable {
 	private UserBeanLocal userBusinnes;
 	@EJB
 	private RoleBeanLocal roleBusinnes;
+	@EJB
+	private CompanyBeanLocal companyBusinnes;
 	private String nome;
 	private String cognome;
+	private String username;
+	private String password;
+	private String country;
+	private String city;
+	private String address;
+	private String cap;
 	private Long idRole;
+	private Long idCompany;
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCap() {
+		return cap;
+	}
+
+	public void setCap(String cap) {
+		this.cap = cap;
+	}
 	
 	public UserManagedBean() {
 
@@ -59,18 +117,35 @@ public class UserManagedBean implements Serializable {
 		idRole = id;
 	}
 
+	public Long getIdCompany() {
+		return idCompany;
+	}
 
+	public void setIdCompany(Long idCompany) {
+		this.idCompany = idCompany;
+	}
+	
 	public void saveUser () {
 		User user = new User();
 	    user.setCognome(getCognome());
 	    user.setNome(getNome());
+	    user.setUsername(getUsername());
+	    user.setPassword(getPassword());
+	    user.setCountry(getCountry());
+	    user.setCity(getCity());
+	    user.setAddress(getAddress());
+	    user.setCap(getCap());
 	    user.setUserRole(roleBusinnes.getRoleByID(idRole));
+	    user.setUserCompany(companyBusinnes.getCompanyByID(idCompany));
 
 		userBusinnes.addUser(user);
-}
+	}
+	
 	public List<User> getUsersList() {
 		return userBusinnes.findAllUser();
 	}
 	
-
+	public void deleteUser(Long id) {
+		userBusinnes.deleteUser(id);
+    }
 }

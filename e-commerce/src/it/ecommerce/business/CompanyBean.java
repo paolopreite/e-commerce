@@ -37,9 +37,9 @@ public class CompanyBean implements CompanyBeanLocal {
 	}
 
 	@Override
-	public void deleteCompany(Company c) {
-		em.remove(c);
-		
+	public void deleteCompany(Long id) {
+		Company c = (Company)em.find(Company.class, id);
+	    em.remove(c);
 	}
 
 	@Override

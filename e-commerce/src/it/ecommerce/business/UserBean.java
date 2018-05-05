@@ -35,8 +35,8 @@ public class UserBean implements UserBeanLocal {
 
 	@Override
 	public void deleteUser(Long id) {
-		// TODO Auto-generated method stub
-		
+	    User u = (User)em.find(User.class, id);
+	    em.remove(u);
 	}
 
 	@Override

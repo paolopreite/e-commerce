@@ -1,6 +1,5 @@
 package it.ecommerce.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -128,11 +127,11 @@ public class User {
 	@ManyToOne()
 	@JoinColumn(name="id_company")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public final Company getCompany() {
+	public final Company getUserCompany() {
 		return userCompany;
 	}
 
-	public final void setCompany(Company company) {
+	public final void setUserCompany(Company company) {
 		this.userCompany = company;
 	}
 	

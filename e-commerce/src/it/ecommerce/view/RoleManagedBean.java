@@ -18,42 +18,40 @@ public class RoleManagedBean implements Serializable {
 
 	@EJB
 	private RoleBeanLocal roleBusinnes;
-	private Role role;
-	private Long idRole;
+	private String nome;
+	private String descrizione;
 	
-	public Long getIdRole() {
-		return idRole;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setIdRole(Long idRole) {
-		this.idRole = idRole;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public RoleManagedBean() {
-		super();
-		role = new Role();
+	public String getDescrizione() {
+		return descrizione;
 	}
 
-	public Role getRole() {
-		return role;
-	}
-	
-	public void setRole(Role r) {
-		role = r;
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
 	}
 	
 	public List<Role> getRolesList() {
 		List<Role> r = roleBusinnes.findAllRole();
-		
 		return r;
 		
 	}
 	
-/*	public void saveRole () {
+	public void saveRole () {
+		Role role = new Role();
+		role.setNome(getNome());
+		role.setDescrizione(getDescrizione());
+
 		roleBusinnes.addRole(role);
 	}
 	
-	public void deleteRole(Integer id) {
+	public void deleteRole(Long id) {
 		roleBusinnes.deleteRole(id);
-    }*/
+    }
 }

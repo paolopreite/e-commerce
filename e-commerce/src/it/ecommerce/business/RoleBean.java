@@ -25,7 +25,7 @@ public class RoleBean implements RoleBeanLocal {
     }
 
 	@Override
-	public void addeRole(Role r) {
+	public void addRole(Role r) {
 		em.persist(r);
 		
 	}
@@ -37,9 +37,9 @@ public class RoleBean implements RoleBeanLocal {
 	}
 
 	@Override
-	public void deleteRole(Role r) {
-		em.remove(r);
-		
+	public void deleteRole(Long id) {
+		Role r = (Role)em.find(Role.class, id);
+	    em.remove(r);
 	}
 
 	@Override

@@ -34,9 +34,9 @@
 							<ui:panel>
 								<ui:panelGrid columns="2">
 									<h:outputLabel value="Nome" />
-									<ui:inputText id="nome" value="#{rolemanager.role.nome}" required="true"/>
+									<ui:inputText id="nome" value="#{rolemanager.nome}" required="true"/>
 									<h:outputLabel value="Descrizione" />
-									<ui:inputText id="descrizione" value="#{rolemanager.role.descrizione}" required="true" />
+									<ui:inputText id="descrizione" value="#{rolemanager.descrizione}" required="true" />
 								</ui:panelGrid>
 								<ui:commandButton actionListener="#{rolemanager.saveRole}" onclick="inserimento.close();" value="Salva Ruolo"></ui:commandButton>
 							</ui:panel>
