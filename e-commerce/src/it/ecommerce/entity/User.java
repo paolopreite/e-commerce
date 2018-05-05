@@ -1,5 +1,3 @@
-//Author:Vanore
-
 package it.ecommerce.entity;
 
 import javax.persistence.CascadeType;
@@ -16,16 +14,17 @@ import javax.persistence.Table;
 @Table(name="user")
 public class User {
   
-	private Long id;
-	private String nome;
-	private String cognome;
-	private String username;
-	private String password;
-	private String country;
-	private String city;
-	private String address;
-	private String cap;
-	private Role   userRole;
+	private Long    id;
+	private String  nome;
+	private String  cognome;
+	private String  username;
+	private String  password;
+	private String  country;
+	private String  city;
+	private String  address;
+	private String  cap;
+	private Role    userRole;
+	private Company userCompany;
 
 	
 	public User() {
@@ -61,7 +60,7 @@ public class User {
 		this.cognome = cognome;
 	}
 
-	/*@Column(name="username",nullable=false,length=20)
+	@Column(name="username",nullable=false,length=20)
 	public String getUsername() {
 		return username;
 	}
@@ -113,7 +112,7 @@ public class User {
 
 	public final void setCap(String cap) {
 		this.cap = cap;
-	}*/
+	}
 
 	@ManyToOne()
 	@JoinColumn(name="id_role")
@@ -126,5 +125,15 @@ public class User {
         this.userRole = role;
     }
 
+	@ManyToOne()
+	@JoinColumn(name="id_company")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	public final Company getCompany() {
+		return userCompany;
+	}
+
+	public final void setCompany(Company company) {
+		this.userCompany = company;
+	}
 	
 }
