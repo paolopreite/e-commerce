@@ -11,9 +11,14 @@
 	</h:head>
 	<h:body>
 
-		<h1>Lista Utenti</h1>
+<!-- 		<h1>Lista Utenti</h1> -->
+		
 
-		<ui:dataTable value="#{usermanager.listUser}" var="elemento" id="tabella">
+		<ui:dataTable value="#{usermanager.listUser}" var="elemento" id="tabella"  
+			selectionMode="single" rowKey="#{elemento.nome}" selection="#{usermanager.nome}">
+				<f:facet name="header">
+				<h:outputText value="Lista Utenti"></h:outputText>
+				</f:facet>
 				<ui:column>
 					<f:facet name="header">
 						<h:outputText value="Nome"></h:outputText>
@@ -61,7 +66,9 @@
 						<h:outputText value="Cap"></h:outputText>
 					</f:facet>
 					<h:outputText value="#{elemento.cap}"></h:outputText>
+
 				</ui:column>
+				
 			</ui:dataTable>
 
 	</h:body>
