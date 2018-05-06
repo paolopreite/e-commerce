@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:ui="http://primefaces.org/ui" 
-	  xmlns:fl = "http://java.sun.com/jsf/facelets">
+	  xmlns:ui="http://primefaces.org/ui"
+	  xmlns:fl = "http://java.sun.com/jsf/facelets" >
 	  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 
 	<h:head>
 		<title>e-commerce</title>
 	</h:head>
+
 	<h:body>
-	<fl:composition>
-			<a href="pages/users.xhtml">UTENTI</a>
-			<a href="pages/roles.xhtml">RUOLI</a>
-			<a href="pages/companies.xhtml">SOCIETA</a>
-		</fl:composition>
-		<fl:composition>
-			<ui:menubar  >
-				<ui:menuitem value="UTENTI" url="pages/users.xhtml"></ui:menuitem>
-				<ui:menuitem value="RUOLI" url="pages/roles.xhtml"></ui:menuitem>
-				<ui:menuitem value="SOCIETA" url="pages/companies.xhtml"></ui:menuitem>
-			</ui:menubar>
-	</fl:composition>
+		<h:form>
+		 	 <ui:menubar>
+		 	 <ui:submenu label ="Home">
+			 <ui:menuitem value="Accedi" url="" />  
+			 <ui:menuitem value="Registrati" url="" /> 
+			 </ui:submenu>
+			 
+			 <ui:submenu label ="Display Data">
+			 <ui:menuitem value="All Users" url="pages/users.xhtml" />  
+			 <ui:menuitem value="All Roles" url="pages/roles.xhtml" /> 
+			 <ui:menuitem value="All Companies" url="pages/companies.xhtml" />  
+			 </ui:submenu>
+		     </ui:menubar>
+	     </h:form>
 	</h:body>
 </html>
