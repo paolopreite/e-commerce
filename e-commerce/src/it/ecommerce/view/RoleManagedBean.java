@@ -67,10 +67,10 @@ public class RoleManagedBean implements Serializable{
 		
 	}
 	
-	public void onRowSelect(SelectEvent event) {
+/*	public void onRowSelect(SelectEvent event) {
         FacesMessage msg = new FacesMessage("Role Selected",this.getNome());
         FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
+    }*/
 
 }
 

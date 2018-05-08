@@ -69,9 +69,9 @@ public class CompanyManagedBean implements Serializable{
 		cbl.deleteCompany(id);
     }
 	
-	public void onRowSelect(SelectEvent event) {
+/*	public void onRowSelect(SelectEvent event) {
         FacesMessage msg = new FacesMessage("Company Selected",this.getRagioneSociale());
         FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
+    }*/
 	
 }

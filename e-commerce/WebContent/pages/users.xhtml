@@ -10,10 +10,9 @@
 		<title>e-commerce</title>
 	</h:head>
 	<h:body>
-
-<!-- 		<h1>Lista Utenti</h1> -->
-		
-
+   
+    <fl:composition template="/template/Template_default.xhtml">
+	<fl:define name="content">
 		<ui:dataTable value="#{usermanager.listUser}" var="elemento" id="tabella"  
 			selectionMode="single" rowKey="#{elemento.nome}" selection="#{usermanager.nome}">
 				<f:facet name="header">
@@ -66,10 +65,9 @@
 						<h:outputText value="Cap"></h:outputText>
 					</f:facet>
 					<h:outputText value="#{elemento.cap}"></h:outputText>
-
 				</ui:column>
-				
 			</ui:dataTable>
-
+		  </fl:define>
+ 		</fl:composition> 
 	</h:body>
 </html>

@@ -12,16 +12,19 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
 
 
 <ui:insert name ="header">
-<ui:include src="../pages/header.xhtml"></ui:include>
+<ui:include src="/pages/header.xhtml"></ui:include>
 </ui:insert>
 
 <ui:insert name ="menu">
-<ui:include src="../pages/menu.xhtml"></ui:include>
-</ui:insert>
+<ui:include src="/pages/menu.xhtml"></ui:include>
+<pre><h:outputText value=""/></pre> 				<!-- spazio -->
+</ui:insert> 
 
+<ui:insert name ="content">
+</ui:insert> 
 
 <ui:insert name ="footer">
-<ui:include src="../pages/footer.xhtml"></ui:include>
+<ui:include src="/pages/footer.xhtml"></ui:include>
 </ui:insert>
 
 

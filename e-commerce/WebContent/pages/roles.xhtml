@@ -9,8 +9,9 @@
 		<title>e-commerce</title>
 	</h:head>
 	<h:body>
-<!-- 		<h1>Lista Ruoli</h1> -->
-		
+
+	<fl:composition template="/template/Template_default.xhtml">
+	<fl:define name="content">
 		<ui:dataTable value="#{rolemanager.listRole}" var="elemento" id="tabella"  
 		selectionMode="single" rowKey="#{elemento.nome}" selection="#{rolemanager.nome}">
 				<f:facet name="header">
@@ -29,5 +30,7 @@
 					<h:outputText value="#{elemento.descrizione}"></h:outputText>
 				</ui:column>
 		</ui:dataTable>
+	  </fl:define>
+	</fl:composition>
 	</h:body>
 </html>

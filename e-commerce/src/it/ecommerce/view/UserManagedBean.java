@@ -26,8 +26,7 @@ public class UserManagedBean implements Serializable{
 	//Dichiaro le variabili BeanLocal (Business Layer)
 	@EJB
 	private UserBeanLocal ubl;
-	private RoleBeanLocal rbl;
-	private CompanyBeanLocal cbl;
+
 	
 	private Long id;
 	private String nome;
@@ -184,9 +183,9 @@ public class UserManagedBean implements Serializable{
 		return ubl.findAllUser();
 	}
 
-	public void onRowSelect(SelectEvent event) {
+/*	public void onRowSelect(SelectEvent event) {
         FacesMessage msg = new FacesMessage("User Selected",this.getNome());
         FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
+    }*/
 	
 }
