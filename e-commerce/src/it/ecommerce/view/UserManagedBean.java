@@ -7,6 +7,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -18,6 +19,7 @@ import it.ecommerce.business.UserBeanLocal;
 
 import it.ecommerce.entity.User;
 
+
 @ManagedBean(name = "usermanager")
 @SessionScoped
 public class UserManagedBean implements Serializable{
@@ -27,7 +29,9 @@ public class UserManagedBean implements Serializable{
 	@EJB
 	private UserBeanLocal ubl;
 
-	
+/*	@ManagedProperty(value="#{param.numero}") 	//per test
+	private String pagina;						//per test
+*/	
 	private Long id;
 	private String nome;
 	private String cognome;
@@ -181,6 +185,22 @@ public class UserManagedBean implements Serializable{
 	public List<User> getListUser() 
 	{
 		return ubl.findAllUser();
+	}
+	
+/*	public final String test()
+	{
+		switch (pagina!=null ? pagina :"") {
+		case "1":
+			return "users";
+		default :
+			return "roles";
+		}
+	}*/
+	
+	public final String checkLogin()
+	{
+		//qui faccio la select e se restituisce un valore 
+		return "home";
 	}
 
 /*	public void onRowSelect(SelectEvent event) {

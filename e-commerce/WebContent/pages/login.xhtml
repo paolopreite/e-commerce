@@ -5,7 +5,6 @@
 	  xmlns:fl = "http://java.sun.com/jsf/facelets" >
 	  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
-<!-- <script src="listaUser.js" id="myscript"></script> -->
 
 	<h:head>
  		<title>e-commerce</title> 
@@ -14,8 +13,32 @@
 	<h:body>
 		<fl:composition template="/template/Template_default.xhtml">
 		<fl:define name="content">
-		
+		 <h1 align="center"><code>Sign in to your account:</code></h1>
+		 
+		 <h:form id="test">
+		 	<label for="username">Username:</label>
+		 	<ui:inputText id="username" required="true" requiredMessage="Campo obbligatorio">
+		 	<f:validateLength minimum="3"></f:validateLength>
+		 	</ui:inputText>
+		 	<h:message for="username">hhhh</h:message>
+		 	
+		 	<br />
+		 	
+		 	<label for="password">Password:</label>
+		 	<ui:inputText id="password" required="true" requiredMessage="Campo obbligatorio">
+		 	<f:validateLength minimum="8"></f:validateLength>
+		 	</ui:inputText>
+		 	<h:message for="password">hhh</h:message>
+		 	
+		 	<br />
+		 	
 
+		 	
+		 	<ui:commandButton  value="Login" action="#{usermanager.checkLogin}">
+		 	</ui:commandButton>
+		 	
+		 </h:form>
+		 
 		 </fl:define> 
  		</fl:composition> 
 	</h:body>
