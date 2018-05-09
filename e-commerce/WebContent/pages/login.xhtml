@@ -17,25 +17,24 @@
 		 
 		 <h:form id="test">
 		 	<label for="username">Username:</label>
-		 	<ui:inputText id="username" required="true" requiredMessage="Campo obbligatorio">
+		 	<ui:inputText id="username" value="#{usermanager.username}" required="true" requiredMessage="Campo obbligatorio">
 		 	<f:validateLength minimum="3"></f:validateLength>
 		 	</ui:inputText>
-		 	<h:message for="username">hhhh</h:message>
+		 	<ui:message for="username"></ui:message>
 		 	
 		 	<br />
 		 	
 		 	<label for="password">Password:</label>
-		 	<ui:inputText id="password" required="true" requiredMessage="Campo obbligatorio">
+		 	<ui:inputText id="password" value="#{usermanager.password}" required="true" requiredMessage="Campo obbligatorio">
 		 	<f:validateLength minimum="8"></f:validateLength>
 		 	</ui:inputText>
-		 	<h:message for="password">hhh</h:message>
+		 	<ui:message for="password"></ui:message>
 		 	
 		 	<br />
 		 	
 
-		 	
-		 	<ui:commandButton  value="Login" action="#{usermanager.checkLogin}">
-		 	</ui:commandButton>
+		 	<h:commandButton  value="Login" action="#{usermanager.checkLogin}">
+		 	</h:commandButton>
 		 	
 		 </h:form>
 		 

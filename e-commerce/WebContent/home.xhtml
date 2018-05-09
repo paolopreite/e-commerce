@@ -1,3 +1,43 @@
+<!-- <!DOCTYPE html> -->
+<!-- <html xmlns:h="http://java.sun.com/jsf/html" -->
+<!-- 	  xmlns:f="http://java.sun.com/jsf/core"> -->
+<!-- 	<h:head> -->
+<!-- 		<meta charset="ISO-8859-1"></meta> -->
+<!-- 		<title>Login</title> -->
+<!-- 	</h:head> -->
+	
+<!-- 	<h:body> -->
+<!-- 		<h1>Login</h1> -->
+		
+<!-- 		<h:panelGroup rendered="#{not empty sessionScope.user}"> -->
+<!-- 			<h:form> -->
+<!-- 				<div> -->
+<!-- 					<div style="padding-bottom: 20px;">Ciao <h:outputText value="#{sessionScope.user.firstname}" /></div> -->
+<!-- 					<div><h:commandButton action="#{login.logout}" value="Esci"></h:commandButton></div> -->
+<!-- 				</div> -->
+<!-- 			</h:form> -->
+<!-- 		</h:panelGroup> -->
+		
+<!-- 		<h:panelGroup rendered="#{empty sessionScope.user}"> -->
+<!-- 			<h:form> -->
+<!-- 				<div> -->
+<!-- 					<h:outputText value="Username" /> -->
+<!-- 					<h:inputText id="username" value="#{login.username}" requiredMessage="Campo obbligatorio!"></h:inputText> -->
+<!-- 					<h:message for="username"></h:message>			 -->
+<!-- 				</div> -->
+				
+<!-- 				<div> -->
+<!-- 					<h:outputText value="Password" /> -->
+<!-- 					<h:inputSecret id="password" value="#{login.password}" requiredMessage="Campo obbligatorio!"></h:inputSecret> -->
+<!-- 					<h:message for="password"></h:message> -->
+<!-- 				</div> -->
+				
+<!-- 				<h:commandButton action="#{login.login}" value="Acedi"></h:commandButton> -->
+<!-- 			</h:form> -->
+<!-- 		</h:panelGroup> -->
+<!-- 	</h:body> -->
+<!-- </html> -->
+
 <!DOCTYPE html>
 <html xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
@@ -13,6 +53,17 @@
 	
 	<h:body id ="body">
 		<fl:composition template="/template/Template_default.xhtml">
+		<fl:define name="menu">
+		<h:form>
+		 	 <ui:menubar>
+		 	 <ui:submenu label ="Main">
+		 	 <ui:menuitem value="Home" url="/home.xhtml" />  
+			 <ui:menuitem value="Accedi" url="/pages/login.xhtml" />  
+			 <ui:menuitem value="Registrati" url="" /> 
+			 </ui:submenu>
+		     </ui:menubar>
+	     </h:form>
+		</fl:define>
 		</fl:composition>
 	</h:body>
 	

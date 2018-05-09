@@ -200,6 +200,7 @@ public class UserManagedBean implements Serializable{
 	public final String checkLogin()
 	{
 		//qui faccio la select e se restituisce un valore 
+		
 		return "home";
 	}
 
