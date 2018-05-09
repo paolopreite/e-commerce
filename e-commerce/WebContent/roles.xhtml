@@ -26,13 +26,19 @@
 						</ui:column>
 						<ui:column>
 							<f:facet name="header">Azioni</f:facet>
+							<ui:commandButton oncomplete="PF('inserimento').show();" value="Modifica" update=":inserimentoForm:inserimentoDetail">
+								<f:setPropertyActionListener value="#{elemento.id}" target="#{rolemanager.idRuolo}"/>
+								<f:setPropertyActionListener value="#{elemento.nome}" target="#{rolemanager.nome}"/>
+								<f:setPropertyActionListener value="#{elemento.descrizione}" target="#{rolemanager.descrizione}"/>
+							</ui:commandButton>
 							<ui:commandButton value="Cancella" actionListener="#{rolemanager.deleteRole(elemento.id)}" update="tabella" />
 						</ui:column>
 					</ui:dataTable>
-					<h:form>
-						<ui:dialog widgetVar="inserimento" width="400" height="500" modal="true">
-							<ui:panel>
-								<ui:panelGrid columns="2">
+					<h:form id="inserimentoForm">
+						<ui:dialog id="inserimentoDialog" widgetVar="inserimento" width="400" height="500" modal="true">
+							<ui:panel id="inserimentoDetail">
+								<h:inputHidden id="idRuolo" value="#{rolemanager.idRuolo}"/>
+								<ui:panelGrid columns="2">	
 									<h:outputLabel value="Nome" />
 									<ui:inputText id="nome" value="#{rolemanager.nome}" required="true"/>
 									<h:outputLabel value="Descrizione" />
