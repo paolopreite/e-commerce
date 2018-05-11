@@ -9,36 +9,45 @@
 	<h:body>
 		<u:composition template="template/default.xhtml">
 			<u:define name="content">
-				<h1>Tabella Aziende</h1>
-				
-					<ui:dataTable
-						value="#{companymanager.companiesList}" var="elemento" id="tabella">
-						<ui:column>
-							<f:facet name="header">
-								<h:outputText value="Ragione Sociale"></h:outputText>
-							</f:facet>
-							<h:outputText value="#{elemento.ragioneSociale}"></h:outputText>
-						</ui:column>
-						<ui:column>
-							<f:facet name="header">
-								<h:outputText value="Partita Iva"></h:outputText>
-							</f:facet>
-							<h:outputText value="#{elemento.partitaIva}"></h:outputText>
-						</ui:column>
-						<ui:column>
-							<f:facet name="header">
-								<h:outputText value="Descrizione"></h:outputText>
-							</f:facet>
-							<h:outputText value="#{elemento.descrizione}"></h:outputText>
-						</ui:column>
-						<ui:column>
-							<f:facet name="header">Azioni</f:facet>
-							<ui:commandButton value="Cancella" actionListener="#{companymanager.deleteCompany(elemento.id)}" update="tabella" />
-						</ui:column>
-					</ui:dataTable>
-					<h:form>
+					<h:form id="tabellaForm">
+						<ui:dataTable value="#{companymanager.companiesList}" var="elemento" id="tabella"
+							selectionMode="single" selection="#{companymanager.selectedCompany}" rowKey="#{elemento.id}">
+						    <f:facet name="header">
+				            	Tabella Aziende
+				        	</f:facet>
+					        <ui:ajax event="rowSelect" listener="#{companymanager.onRowSelect}" oncomplete="PF('inserimento').show()" update=":inserimentoForm:inserimentoDetail">
+								<f:setPropertyActionListener value="" target="#{companymanager.id}"/>
+								<f:setPropertyActionListener value="" target="#{companymanager.partitaIva}"/>
+								<f:setPropertyActionListener value="" target="#{companymanager.descrizione}"/>
+						    </ui:ajax>
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Ragione Sociale"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.ragioneSociale}"></h:outputText>
+							</ui:column>
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Partita Iva"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.partitaIva}"></h:outputText>
+							</ui:column>
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Descrizione"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.descrizione}"></h:outputText>
+							</ui:column>
+							<ui:column>
+								<f:facet name="header">Azioni</f:facet>
+								<ui:commandButton value="Cancella" actionListener="#{companymanager.deleteCompany(elemento.id)}" update="tabella" />
+							</ui:column>
+						</ui:dataTable>
+					</h:form>
+					<h:form id="inserimentoForm">
 						<ui:dialog widgetVar="inserimento" width="400" height="500" modal="true">
-							<ui:panel>
+							<ui:panel id="inserimentoDetail">
+								<h:inputHidden id="id" value="#{companymanager.id}"/>
 								<ui:panelGrid columns="2">
 									<h:outputLabel value="Ragione Sociale" />
 									<ui:inputText id="ragioneSociale" value="#{companymanager.ragioneSociale}" required="true"/>

@@ -29,7 +29,6 @@ public class RoleManagedBean implements Serializable {
 	private Long   idRuolo;
 	private Role selectedRole;
 	
-	
 	public RoleManagedBean() {
 	}
 	
@@ -95,4 +94,11 @@ public class RoleManagedBean implements Serializable {
 		this.selectedRole = selectedRole;
 	}
     
+    public void onRowSelect(SelectEvent event) {
+    	
+    	Role role = (Role) event.getObject();
+    	this.setIdRuolo(role.getId());
+    	this.setNome(role.getNome());
+    	this.setDescrizione(role.getDescrizione());
+    }
 }

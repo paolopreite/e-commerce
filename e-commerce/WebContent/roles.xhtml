@@ -9,31 +9,35 @@
 	<h:body>
 		<u:composition template="template/default.xhtml">
 			<u:define name="content">
-				<h1>Tabella Ruoli</h1>
-					<ui:dataTable
-						value="#{rolemanager.rolesList}" var="elemento" id="tabella">
-						<ui:column>
-							<f:facet name="header">
-								<h:outputText value="Nome"></h:outputText>
-							</f:facet>
-							<h:outputText value="#{elemento.nome}"></h:outputText>
-						</ui:column>
-						<ui:column>
-							<f:facet name="header">
-								<h:outputText value="Descrizione"></h:outputText>
-							</f:facet>
-							<h:outputText value="#{elemento.descrizione}"></h:outputText>
-						</ui:column>
-						<ui:column>
-							<f:facet name="header">Azioni</f:facet>
-							<ui:commandButton oncomplete="PF('inserimento').show();" value="Modifica" update=":inserimentoForm:inserimentoDetail">
-								<f:setPropertyActionListener value="#{elemento.id}" target="#{rolemanager.idRuolo}"/>
-								<f:setPropertyActionListener value="#{elemento.nome}" target="#{rolemanager.nome}"/>
-								<f:setPropertyActionListener value="#{elemento.descrizione}" target="#{rolemanager.descrizione}"/>
-							</ui:commandButton>
-							<ui:commandButton value="Cancella" actionListener="#{rolemanager.deleteRole(elemento.id)}" update="tabella" />
-						</ui:column>
-					</ui:dataTable>
+				<h:form id="tabellaForm">
+						<ui:dataTable
+							value="#{rolemanager.rolesList}" var="elemento" id="tabella"
+							selectionMode="single" selection="#{rolemanager.selectedRole}" rowKey="#{elemento.id}">
+					    <f:facet name="header">
+			            	Tabella Ruoli
+			        	</f:facet>
+				        <ui:ajax event="rowSelect" listener="#{rolemanager.onRowSelect}" oncomplete="PF('inserimento').show()" update=":inserimentoForm:inserimentoDetail">
+							<f:setPropertyActionListener value="" target="#{rolemanager.idRuolo}"/>
+							<f:setPropertyActionListener value="" target="#{rolemanager.nome}"/>
+							<f:setPropertyActionListener value="" target="#{rolemanager.descrizione}"/>
+					    </ui:ajax>
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Nome"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.nome}"></h:outputText>
+							</ui:column>
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Descrizione"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.descrizione}"></h:outputText>
+							</ui:column>
+							<ui:column>
+								<ui:commandButton value="Cancella" actionListener="#{rolemanager.deleteRole(elemento.id)}" update="tabella" />
+							</ui:column>
+						</ui:dataTable>
+					</h:form>
 					<h:form id="inserimentoForm">
 						<ui:dialog id="inserimentoDialog" widgetVar="inserimento" width="400" height="500" modal="true">
 							<ui:panel id="inserimentoDetail">

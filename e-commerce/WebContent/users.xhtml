@@ -9,26 +9,30 @@
 	<h:body>
 		<u:composition template="template/default.xhtml">
 			<u:define name="content">
-				<h1>Tabella Utenti</h1>
-				<ui:dataTable
-					value="#{usermanager.usersList}" var="elemento" id="tabella">
-					<ui:column>
+				<h:form id="tabellaForm">
+					<ui:dataTable
+						value="#{usermanager.usersList}" var="elemento" id="tabella">
 						<f:facet name="header">
-							<h:outputText value="Nome"></h:outputText>
-						</f:facet>
-						<h:outputText value="#{elemento.nome}"></h:outputText>
-					</ui:column>
-					<ui:column>
-						<f:facet name="header">
-							<h:outputText value="Cognome"></h:outputText>
-						</f:facet>
-						<h:outputText value="#{elemento.cognome}"></h:outputText>
-					</ui:column>
-					<ui:column>
-						<f:facet name="header">Azioni</f:facet>
-						<ui:commandButton value="Cancella" actionListener="#{usermanager.deleteUser(elemento.id)}" update="tabella" />
-					</ui:column>
-				</ui:dataTable>
+					    	Tabella Utenti
+					    </f:facet>
+						<ui:column>
+							<f:facet name="header">
+								<h:outputText value="Nome"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{elemento.nome}"></h:outputText>
+						</ui:column>
+						<ui:column>
+							<f:facet name="header">
+								<h:outputText value="Cognome"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{elemento.cognome}"></h:outputText>
+						</ui:column>
+						<ui:column>
+							<f:facet name="header">Azioni</f:facet>
+							<ui:commandButton value="Cancella" actionListener="#{usermanager.deleteUser(elemento.id)}" update="tabella" />
+						</ui:column>
+					</ui:dataTable>
+			    </h:form>
 				<h:form>
 					<ui:dialog widgetVar="inserimento" width="400" height="500" modal="true">
 						<ui:panel>
