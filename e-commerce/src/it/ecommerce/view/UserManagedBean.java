@@ -8,8 +8,10 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.ws.rs.GET;
 
 import org.primefaces.event.SelectEvent;
 
@@ -21,7 +23,8 @@ import it.ecommerce.entity.User;
 
 
 @ManagedBean(name = "usermanager")
-@SessionScoped
+//@SessionScoped
+@RequestScoped
 public class UserManagedBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -29,14 +32,23 @@ public class UserManagedBean implements Serializable{
 	@EJB
 	private UserBeanLocal ubl;
 
-/*	@ManagedProperty(value="#{param.numero}") 	//per test
-	private String pagina;						//per test
-*/	
+
+
+/*	With a @ManagedProperty, which sets the parameter as managed bean property.
+	@ManagedProperty("#{param.someparam}")  -> Request Scope
+	private String someparam;*/
+
 	private Long id;
 	private String nome;
 	private String cognome;
+	
+	@ManagedProperty(value="#{param.username}")
 	private String username;
+
+	@ManagedProperty(value="#{param.password}")
 	private String password;
+
+	 
 	private String country;
 	private String city;
 	private String address;
@@ -187,22 +199,14 @@ public class UserManagedBean implements Serializable{
 		return ubl.findAllUser();
 	}
 	
-/*	public final String test()
-	{
-		switch (pagina!=null ? pagina :"") {
-		case "1":
-			return "users";
-		default :
-			return "roles";
-		}
-	}*/
 	
-	public final String checkLogin()
+	public User checkLogin(String user,String pwd)
 	{
-		//qui faccio la select e se restituisce un valore 
-		
-		return "home";
+		return ubl.login(user,pwd);
 	}
+	
+	
+	
 
 /*	public void onRowSelect(SelectEvent event) {
         FacesMessage msg = new FacesMessage("User Selected",this.getNome());

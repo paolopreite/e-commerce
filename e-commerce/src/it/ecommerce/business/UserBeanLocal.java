@@ -14,4 +14,5 @@ public interface UserBeanLocal {
 	public void deleteUser(Long id);
 	public User getUserByID(Long id);
 	public List<User> findAllUser();
+	public User login(String user,String pwd);
 }

@@ -31,11 +31,10 @@
 		 	<ui:message for="password"></ui:message>
 		 	
 		 	<br />
-		 	
 
-		 	<h:commandButton  value="Login" action="#{usermanager.checkLogin}">
-		 	</h:commandButton>
-		 	
+			<ui:commandButton actionListener="#{usermanager.checkLogin(usermanager.username,usermanager.password)}" value="Login" ajax="false">
+ 		 	</ui:commandButton> 
+
 		 </h:form>
 		 
 		 </fl:define> 
