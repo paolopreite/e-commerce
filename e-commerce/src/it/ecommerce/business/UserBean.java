@@ -28,9 +28,8 @@ public class UserBean implements UserBeanLocal {
 	}
 
 	@Override
-	public void updateUser(Long id) {
-		// TODO Auto-generated method stub
-		
+	public void updateUser(User u) {
+		em.merge(u);
 	}
 
 	@Override

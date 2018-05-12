@@ -11,10 +11,24 @@
 			<u:define name="content">
 				<h:form id="tabellaForm">
 					<ui:dataTable
-						value="#{usermanager.usersList}" var="elemento" id="tabella">
+						value="#{usermanager.usersList}" var="elemento" id="tabella"
+						selectionMode="single" selection="#{usermanager.selectedUser}" rowKey="#{elemento.id}">>
 						<f:facet name="header">
 					    	Tabella Utenti
 					    </f:facet>
+					    <ui:ajax event="rowSelect" listener="#{usermanager.onRowSelect}" oncomplete="PF('inserimento').show()" update=":inserimentoForm:inserimentoDetail">
+							<f:setPropertyActionListener value="" target="#{usermanager.id}"/>
+							<f:setPropertyActionListener value="" target="#{usermanager.nome}"/>
+							<f:setPropertyActionListener value="" target="#{usermanager.cognome}"/>
+							<f:setPropertyActionListener value="" target="#{usermanager.username}"/>
+					    	<f:setPropertyActionListener value="" target="#{usermanager.password}"/>
+					    	<f:setPropertyActionListener value="" target="#{usermanager.country}"/>
+					    	<f:setPropertyActionListener value="" target="#{usermanager.city}"/>
+					    	<f:setPropertyActionListener value="" target="#{usermanager.address}"/>
+					    	<f:setPropertyActionListener value="" target="#{usermanager.cap}"/>
+					    	<f:setPropertyActionListener value="" target="#{usermanager.idRole}"/>
+					    	<f:setPropertyActionListener value="" target="#{usermanager.idCompany}"/>
+					    </ui:ajax>
 						<ui:column>
 							<f:facet name="header">
 								<h:outputText value="Nome"></h:outputText>
@@ -33,9 +47,10 @@
 						</ui:column>
 					</ui:dataTable>
 			    </h:form>
-				<h:form>
+				<h:form  id="inserimentoForm">
 					<ui:dialog widgetVar="inserimento" width="400" height="500" modal="true">
-						<ui:panel>
+						<ui:panel id="inserimentoDetail">
+							<h:inputHidden id="id" value="#{usermanager.id}"/>
 							<ui:panelGrid columns="2">
 								<h:outputLabel value="Nome" />
 								<ui:inputText id="nome" value="#{usermanager.nome}" required="true"/>

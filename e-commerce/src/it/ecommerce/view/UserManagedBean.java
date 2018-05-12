@@ -7,6 +7,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import org.primefaces.event.SelectEvent;
+
 import it.ecommerce.business.CompanyBeanLocal;
 import it.ecommerce.business.RoleBeanLocal;
 import it.ecommerce.business.UserBeanLocal;
@@ -25,6 +27,7 @@ public class UserManagedBean implements Serializable {
 	private RoleBeanLocal roleBusinnes;
 	@EJB
 	private CompanyBeanLocal companyBusinnes;
+	private Long id;
 	private String nome;
 	private String cognome;
 	private String username;
@@ -35,6 +38,7 @@ public class UserManagedBean implements Serializable {
 	private String cap;
 	private Long idRole;
 	private Long idCompany;
+	private User selectedUser;
 	
 	public String getUsername() {
 		return username;
@@ -125,20 +129,55 @@ public class UserManagedBean implements Serializable {
 		this.idCompany = idCompany;
 	}
 	
-	public void saveUser () {
-		User user = new User();
-	    user.setCognome(getCognome());
-	    user.setNome(getNome());
-	    user.setUsername(getUsername());
-	    user.setPassword(getPassword());
-	    user.setCountry(getCountry());
-	    user.setCity(getCity());
-	    user.setAddress(getAddress());
-	    user.setCap(getCap());
-	    user.setUserRole(roleBusinnes.getRoleByID(idRole));
-	    user.setUserCompany(companyBusinnes.getCompanyByID(idCompany));
+	public Long getId() {
+		return id;
+	}
 
-		userBusinnes.addUser(user);
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public User getSelectedUser() {
+		return selectedUser;
+	}
+
+	public void setSelectedUser(User selectedUser) {
+		this.selectedUser = selectedUser;
+	}
+
+	public void saveUser () {
+		
+		if (getId() != null) {
+			User user = new User();
+			user.setId(getId());
+			user.setCognome(getCognome());
+		    user.setNome(getNome());
+		    user.setUsername(getUsername());
+		    user.setPassword(getPassword());
+		    user.setCountry(getCountry());
+		    user.setCity(getCity());
+		    user.setAddress(getAddress());
+		    user.setCap(getCap());
+		    user.setUserRole(roleBusinnes.getRoleByID(idRole));
+		    user.setUserCompany(companyBusinnes.getCompanyByID(idCompany));
+
+		    userBusinnes.updateUser(user);
+		}
+		else {
+			User user = new User();
+		    user.setCognome(getCognome());
+		    user.setNome(getNome());
+		    user.setUsername(getUsername());
+		    user.setPassword(getPassword());
+		    user.setCountry(getCountry());
+		    user.setCity(getCity());
+		    user.setAddress(getAddress());
+		    user.setCap(getCap());
+		    user.setUserRole(roleBusinnes.getRoleByID(idRole));
+		    user.setUserCompany(companyBusinnes.getCompanyByID(idCompany));
+
+		    userBusinnes.addUser(user);
+		}
 	}
 	
 	public List<User> getUsersList() {
@@ -147,5 +186,20 @@ public class UserManagedBean implements Serializable {
 	
 	public void deleteUser(Long id) {
 		userBusinnes.deleteUser(id);
+    }
+	
+    public void onRowSelect(SelectEvent event) {
+    	User user = (User) event.getObject();
+    	this.setId(user.getId());
+    	this.setNome(user.getNome());
+    	this.setCognome(user.getCognome());
+    	this.setUsername(user.getUsername());
+    	this.setPassword(user.getPassword());
+    	this.setCountry(user.getCountry());
+    	this.setCity(user.getCity());
+    	this.setAddress(user.getAddress());
+    	this.setCap(user.getCap());
+    	this.setIdRole(user.getUserRole().getId());
+    	this.setIdCompany(user.getUserCompany().getId());
     }
 }
