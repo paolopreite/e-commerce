@@ -10,9 +10,7 @@ import javax.faces.bean.RequestScoped;
 import org.primefaces.event.SelectEvent;
 
 import it.ecommerce.business.CompanyBeanLocal;
-
 import it.ecommerce.entity.Company;
-import it.ecommerce.entity.Role;
 
 
 @ManagedBean(name="companymanager")
@@ -71,13 +69,12 @@ public class CompanyManagedBean implements Serializable {
 	}
 
 	public List<Company> getCompaniesList() {
-		List<Company> r = companyBusinnes.findAllRole();
+		List<Company> r = companyBusinnes.findAllCompany();
 		
-		return r;
-		
+		return r;	
 	}
 	
-	public void saveCompany () {
+	public void saveCompany() {
 		
 		if (getId() != null) {
 			Company company = companyBusinnes.getCompanyByID(getId());

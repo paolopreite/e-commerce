@@ -52,7 +52,8 @@ public class RoleBean implements RoleBeanLocal {
 		return em.find(Role.class, id);
 	}
 
-	@GET
+	@SuppressWarnings("unchecked")
+    @GET
 	@Path(value="/role/lista")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Role> findAllRole() {

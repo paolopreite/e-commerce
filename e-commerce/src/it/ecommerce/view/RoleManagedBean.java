@@ -1,20 +1,12 @@
 package it.ecommerce.view;
 
 import java.io.Serializable;
-
-import java.util.ArrayList;
-
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
-import org.apache.tomee.loader.filter.PackageFilter;
-import org.primefaces.context.PrimeFacesContext;
 import org.primefaces.event.SelectEvent;
 
 import it.ecommerce.business.RoleBeanLocal;
@@ -27,7 +19,7 @@ public class RoleManagedBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	private RoleBeanLocal roleBusinnes;
+	private RoleBeanLocal roleBusiness;
 	private String nome;
 	private String descrizione;
 	private Long   idRuolo;
@@ -53,7 +45,7 @@ public class RoleManagedBean implements Serializable {
 	}
 	
 	public List<Role> getRolesList() {
-		List<Role> r = roleBusinnes.findAllRole();
+		List<Role> r = roleBusiness.findAllRole();
 		return r;
 		
 	}
@@ -72,19 +64,19 @@ public class RoleManagedBean implements Serializable {
 			role.setNome(getNome());
 			role.setDescrizione(getDescrizione());
 
-			roleBusinnes.updateRole(role);
+			roleBusiness.updateRole(role);
 		} else {
 			Role role = new Role();
 			role.setNome(getNome());
 			role.setDescrizione(getDescrizione());
 
-			roleBusinnes.addRole(role);
+			roleBusiness.addRole(role);
 		}
 
 	}
 	
 	public void deleteRole(Long id) {
-		roleBusinnes.deleteRole(id);
+		roleBusiness.deleteRole(id);
     }
 	
 	public Role getSelectedRole() {

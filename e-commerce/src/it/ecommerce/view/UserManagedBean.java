@@ -1,31 +1,18 @@
 package it.ecommerce.view;
 
 import java.io.Serializable;
-
-import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.ws.rs.GET;
-
 
 import org.primefaces.event.SelectEvent;
 
 import it.ecommerce.business.CompanyBeanLocal;
 import it.ecommerce.business.RoleBeanLocal;
 import it.ecommerce.business.UserBeanLocal;
-
-import it.ecommerce.entity.Role;
 import it.ecommerce.entity.User;
 
 
@@ -175,8 +162,8 @@ public class UserManagedBean implements Serializable {
 		    user.setCity(getCity());
 		    user.setAddress(getAddress());
 		    user.setCap(getCap());
-		    user.setUserRole(roleBusinnes.getRoleByID(getIdRole()));
-		    user.setUserCompany(companyBusinnes.getCompanyByID(getIdCompany()));
+		    user.setRole(roleBusinnes.getRoleByID(getIdRole()));
+		    user.setCompany(companyBusinnes.getCompanyByID(getIdCompany()));
 
 		    userBusinnes.updateUser(user);
 		} else {
@@ -189,8 +176,8 @@ public class UserManagedBean implements Serializable {
 		    user.setCity(getCity());
 		    user.setAddress(getAddress());
 		    user.setCap(getCap());
-		    user.setUserRole(roleBusinnes.getRoleByID(getIdRole()));
-		    user.setUserCompany(companyBusinnes.getCompanyByID(getIdCompany()));
+		    user.setRole(roleBusinnes.getRoleByID(getIdRole()));
+		    user.setCompany(companyBusinnes.getCompanyByID(getIdCompany()));
 
 		    userBusinnes.addUser(user);
 		}
@@ -215,16 +202,16 @@ public class UserManagedBean implements Serializable {
     	this.setCity(user.getCity());
     	this.setAddress(user.getAddress());
     	this.setCap(user.getCap());
-    	this.setIdRole(user.getUserRole().getId());
-    	this.setIdCompany(user.getUserCompany().getId());
+    	this.setIdRole(user.getRole().getId());
+    	this.setIdCompany(user.getCompany().getId());
     }
 
 	//Va richiamato nel xhtml senza il get e con la prima lettera minuscola (es:usermanager.listUser)
 	public List<User> getListUser() {
-		return ubl.findAllUser();
+		return userBusinnes.findAllUser();
 	}
 	
 	public User checkLogin(String user,String pwd) {
-		return ubl.login(user,pwd);
+		return userBusinnes.login(user,pwd);
 	}
 }
