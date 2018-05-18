@@ -1,6 +1,3 @@
-
-//Author:Vanore
-
 package it.ecommerce.entity;
 
 import javax.persistence.Column;

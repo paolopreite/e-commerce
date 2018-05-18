@@ -1,5 +1,3 @@
-//Author:Vanore
-
 package it.ecommerce.entity;
 
 import javax.persistence.Column;
@@ -69,4 +67,4 @@ public class Company {
 		this.descrizione = descrizione;
 	}
 
-}
+}	

@@ -1,5 +1,3 @@
-//Author:Vanore
-
 package it.ecommerce.entity;
 
 import javax.persistence.Column;
@@ -137,6 +135,4 @@ public class User {
 	public final void setCompany(Company company) {
 		this.company = company;
 	}
-
-	
 }
