@@ -1,17 +1,30 @@
 package it.ecommerce.view;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.ws.rs.GET;
+
 
 import org.primefaces.event.SelectEvent;
 
 import it.ecommerce.business.CompanyBeanLocal;
 import it.ecommerce.business.RoleBeanLocal;
 import it.ecommerce.business.UserBeanLocal;
+
 import it.ecommerce.entity.Role;
 import it.ecommerce.entity.User;
 
@@ -30,12 +43,18 @@ public class UserManagedBean implements Serializable {
 	private Long id;
 	private String nome;
 	private String cognome;
+	
+	@ManagedProperty(value="#{param.username}")
 	private String username;
+
+	@ManagedProperty(value="#{param.password}")
 	private String password;
+
 	private String country;
 	private String city;
 	private String address;
 	private String cap;
+
 	private Long idRole;
 	private Long idCompany;
 	private User selectedUser;
@@ -145,11 +164,9 @@ public class UserManagedBean implements Serializable {
 		this.selectedUser = selectedUser;
 	}
 
-	public void saveUser () {
-		
-		if (getId() != null) {
-			User user = new User();
-			user.setId(getId());
+	public void saveUser() {
+		if(getId() != null) {
+			User user = userBusinnes.getUserByID(getId());
 			user.setCognome(getCognome());
 		    user.setNome(getNome());
 		    user.setUsername(getUsername());
@@ -158,12 +175,11 @@ public class UserManagedBean implements Serializable {
 		    user.setCity(getCity());
 		    user.setAddress(getAddress());
 		    user.setCap(getCap());
-		    user.setUserRole(roleBusinnes.getRoleByID(idRole));
-		    user.setUserCompany(companyBusinnes.getCompanyByID(idCompany));
+		    user.setUserRole(roleBusinnes.getRoleByID(getIdRole()));
+		    user.setUserCompany(companyBusinnes.getCompanyByID(getIdCompany()));
 
 		    userBusinnes.updateUser(user);
-		}
-		else {
+		} else {
 			User user = new User();
 		    user.setCognome(getCognome());
 		    user.setNome(getNome());
@@ -173,8 +189,8 @@ public class UserManagedBean implements Serializable {
 		    user.setCity(getCity());
 		    user.setAddress(getAddress());
 		    user.setCap(getCap());
-		    user.setUserRole(roleBusinnes.getRoleByID(idRole));
-		    user.setUserCompany(companyBusinnes.getCompanyByID(idCompany));
+		    user.setUserRole(roleBusinnes.getRoleByID(getIdRole()));
+		    user.setUserCompany(companyBusinnes.getCompanyByID(getIdCompany()));
 
 		    userBusinnes.addUser(user);
 		}
@@ -202,4 +218,13 @@ public class UserManagedBean implements Serializable {
     	this.setIdRole(user.getUserRole().getId());
     	this.setIdCompany(user.getUserCompany().getId());
     }
+
+	//Va richiamato nel xhtml senza il get e con la prima lettera minuscola (es:usermanager.listUser)
+	public List<User> getListUser() {
+		return ubl.findAllUser();
+	}
+	
+	public User checkLogin(String user,String pwd) {
+		return ubl.login(user,pwd);
+	}
 }

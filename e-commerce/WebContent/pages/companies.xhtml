@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://primefaces.org/ui" 
+	  xmlns:fl = "http://java.sun.com/jsf/facelets">
+	  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+	<h:head>
+		<title>e-commerce</title>
+	</h:head>
+	<h:body>
+	
+	<fl:composition template="/template/Template_default.xhtml">
+		<fl:define name="content">
+				<ui:dataTable value="#{companymanager.listCompany}" var="elemento" id="tabella"  
+			selectionMode="single" rowKey="#{elemento.ragioneSociale}" selection="#{companymanager.ragioneSociale}">
+				<f:facet name="header">
+				<h:outputText value="Lista Societa"></h:outputText>
+				</f:facet>
+				<ui:column>
+					<f:facet name="header">
+						<h:outputText value="Ragione Sociale"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{elemento.ragioneSociale}"></h:outputText>
+				</ui:column>
+				<ui:column>
+					<f:facet name="header">
+						<h:outputText value="Partita Iva"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{elemento.partitaIva}"></h:outputText>
+				</ui:column>
+				<ui:column>
+					<f:facet name="header">
+						<h:outputText value="Codice Fiscale"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{elemento.codiceFiscale}"></h:outputText>
+				</ui:column>
+				<ui:column>
+					<f:facet name="header">
+						<h:outputText value="Descrizione"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{elemento.descrizione}"></h:outputText>
+				</ui:column>
+			</ui:dataTable>
+	  </fl:define>
+	</fl:composition>
+	</h:body>
+</html>

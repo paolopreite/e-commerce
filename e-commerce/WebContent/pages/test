@@ -1,0 +1,34 @@
+			<h:form id="login">
+				<ui:dialog widgetVar="alert" width="300" height="500" modal="true" resizable="false"> 
+ 					<ui:panel>
+ 						<ui:panelGrid columns="2">
+ 						
+ 						<h:outputLabel value="Username:"/>
+			 			<ui:inputText id="username" value="#{usermanager.username}" required="true" requiredMessage="Campo obbligatorio">
+			 			<f:validateLength minimum="3"></f:validateLength>
+			 			</ui:inputText>
+			 			<ui:message for="username"></ui:message>
+			 	
+			 			<br />
+			 	
+			 			<h:outputLabel value="Password:"/>
+			 			<ui:inputText id="password" value="#{usermanager.password}" required="true" requiredMessage="Campo obbligatorio">
+			 			<f:validateLength minimum="8"></f:validateLength>
+			 			</ui:inputText>
+			 			<ui:message for="password"></ui:message>
+			 	
+			 			<br />
+	
+						<ui:commandButton actionListener="#{usermanager.checkLogin(usermanager.username,usermanager.password)}" value="Login" >
+	 		 			</ui:commandButton> 
+ 						
+
+ 						</ui:panelGrid>
+ 						<ui:commandButton value="Salva dati"></ui:commandButton>
+ 					</ui:panel>
+ 				</ui:dialog> 
+ 				
+ 				<br />
+ 				
+ 				<ui:commandButton type="button" onclick="PF('alert').show();" value="Add User"></ui:commandButton>
+			</h:form>

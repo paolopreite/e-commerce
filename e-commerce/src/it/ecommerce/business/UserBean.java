@@ -2,13 +2,23 @@ package it.ecommerce.business;
 
 import java.util.List;
 
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import org.apache.openejb.jee.jba.Home;
 
 import it.ecommerce.entity.User;
-import javax.persistence.Query;
-
 
 /**
  * Session Bean implementation class UserBean
@@ -22,8 +32,8 @@ public class UserBean implements UserBeanLocal {
     public UserBean() {
         
     }
-    
-	public void addUser(User u) {
+
+public void addUser(User u) {
 		em.persist(u);
 	}
 
@@ -34,23 +44,31 @@ public class UserBean implements UserBeanLocal {
 
 	@Override
 	public void deleteUser(Long id) {
-	    User u = (User)em.find(User.class, id);
+	    User u = getUserByID(id);
 	    em.remove(u);
 	}
 
-	@Override
-	public User getUserByID(Long id) {
+	@GET
+	@Path(value="/user/lista/{id_user}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getUserByID(@PathParam("id_user")Long id) {
 		return em.find(User.class, id);
-		
 	}
-
-	@Override
-	public List<User> findAllUser() {
-		Query q = em.createQuery("SELECT u FROM User u");
-		
-		return q.getResultList();
-	}
-
-
 	
+	@GET
+	@Path(value="/user/lista")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<User> findAllUser() {
+		return em.createQuery("SELECT u FROM User u").getResultList();
+	}
+	
+	@GET
+	public User login(String user, String pwd) {
+		User u = (User) em.createQuery("SELECT u FROM User u WHERE u.username =:user1 AND u.password = :pwd1")
+		      .setParameter("user1", user)
+		      .setParameter("pwd1", pwd)
+		      .getSingleResult();
+          
+		return u;
+	}
 }

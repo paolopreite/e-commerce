@@ -46,6 +46,5 @@ public class Role {
 
 	public  void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
-	}
-	
+	}	
 }

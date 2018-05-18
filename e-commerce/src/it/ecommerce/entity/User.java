@@ -12,20 +12,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name="user")
 public class User {
-  
-	private Long    id;
-	private String  nome;
-	private String  cognome;
-	private String  username;
-	private String  password;
-	private String  country;
-	private String  city;
-	private String  address;
-	private String  cap;
-	private Role    userRole;
-	private Company userCompany;
+	private Long id;
+	private String nome;
+	private String cognome;
+	private String username;
+	private String password;
+	private String country;
+	private String city;
+	private String address;
+	private String cap;
+	private Role role;
+	private Company company;
 
-	
 	public User() {
 	}
 	
@@ -39,7 +37,6 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	@Column(name="nome",nullable=false,length=30)
 	public String getNome() {
@@ -116,23 +113,22 @@ public class User {
 	@ManyToOne()
 	@JoinColumn(name="id_role")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    public Role getUserRole() {
-        return userRole;
-    }
+	public final Role getRole() {
+		return role;
+	}
 
-    public void setUserRole(Role role) {
-        this.userRole = role;
-    }
+	public final void setRole(Role role) {
+		this.role = role;
+	}
 
 	@ManyToOne()
 	@JoinColumn(name="id_company")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public final Company getUserCompany() {
-		return userCompany;
+	public final Company getCompany() {
+		return company;
 	}
 
-	public final void setUserCompany(Company company) {
-		this.userCompany = company;
+	public final void setCompany(Company company) {
+		this.company = company;
 	}
-	
 }

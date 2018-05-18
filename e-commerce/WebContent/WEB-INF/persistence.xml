@@ -4,7 +4,6 @@
 		
 		<properties>
 			<property name="openejb.jpa.auto-scan" value="true" />
-			<!-- property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" /-->
 		</properties>
 	</persistence-unit>
 </persistence>

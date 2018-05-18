@@ -1,11 +1,15 @@
 package it.ecommerce.view;
 
 import java.io.Serializable;
+
+import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
@@ -63,16 +67,13 @@ public class RoleManagedBean implements Serializable {
 	}
 
 	public void saveRole () {
-		
 		if (getIdRuolo() != null) {
-			Role role = new Role();
-			role.setId(getIdRuolo());
+			Role role = roleBusiness.getRoleByID(getIdRuolo());
 			role.setNome(getNome());
 			role.setDescrizione(getDescrizione());
 
 			roleBusinnes.updateRole(role);
-		}
-		else {
+		} else {
 			Role role = new Role();
 			role.setNome(getNome());
 			role.setDescrizione(getDescrizione());

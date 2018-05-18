@@ -6,7 +6,11 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import it.ecommerce.entity.Role;
 
@@ -32,29 +36,27 @@ public class RoleBean implements RoleBeanLocal {
 	
 	@Override
 	public void updateRole(Role r) {
-		em.merge(r);
-		
-	}
+    em.merge(r);
+  }
 
 	@Override
 	public void deleteRole(Long id) {
-		Role r = (Role)em.find(Role.class, id);
-	    em.remove(r);
+		Role r = getRoleByID(id);
+	  em.remove(r);
 	}
 
-	@Override
-	public Role getRoleByID(Long id) {
+	@GET
+	@Path(value="/role/lista/{id_role}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Role getRoleByID(@PathParam("id_role")Long id) {
 		return em.find(Role.class, id);
-		
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
+	@GET
+	@Path(value="/role/lista")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Role> findAllRole() {
-		Query q = em.createQuery("SELECT r FROM Role r");
-		
-		return q.getResultList();
-		
+		return em.createQuery("SELECT r FROM Role r").getResultList();		
 	}
 
 }

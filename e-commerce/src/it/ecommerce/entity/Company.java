@@ -14,6 +14,7 @@ public class Company {
 	private Long id;
 	private String ragioneSociale; 
 	private String partitaIva;
+	private String codiceFiscale;
 	private String descrizione;
 	
 	public Company() {
@@ -48,7 +49,16 @@ public class Company {
 		this.partitaIva = partitaIva;
 	}
 
-	@Column(name="descrizione",length=100)
+	@Column(name="codice_fiscale",nullable=false,length=30)
+	public String getCodiceFiscale() {
+		return codiceFiscale;
+	}
+
+	public void setCodiceFiscale(String codiceFiscale) {
+		this.codiceFiscale = codiceFiscale;
+	}
+
+	@Column(name="descrizione",nullable=false,length=100)
 	public String getDescrizione() {
 		return descrizione;
 	}
@@ -56,5 +66,4 @@ public class Company {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-
 }

@@ -10,6 +10,7 @@ import javax.faces.bean.RequestScoped;
 import org.primefaces.event.SelectEvent;
 
 import it.ecommerce.business.CompanyBeanLocal;
+
 import it.ecommerce.entity.Company;
 import it.ecommerce.entity.Role;
 
@@ -79,15 +80,13 @@ public class CompanyManagedBean implements Serializable {
 	public void saveCompany () {
 		
 		if (getId() != null) {
-			Company company = new Company();
-			company.setId(getId());
+			Company company = companyBusinnes.getCompanyByID(getId());
 			company.setRagioneSociale(getRagioneSociale());
 			company.setPartitaIva(getPartitaIva());
 			company.setDescrizione(getDescrizione());
 
 			companyBusinnes.updateCompany(company);
-		}
-		else {
+		} else {
 			Company company = new Company();
 			company.setRagioneSociale(getRagioneSociale());
 			company.setPartitaIva(getPartitaIva());
@@ -99,9 +98,9 @@ public class CompanyManagedBean implements Serializable {
 	
 	public void deleteCompany(Long id) {
 		companyBusinnes.deleteCompany(id);
-    }
+  }
 	
-    public void onRowSelect(SelectEvent event) {
+  public void onRowSelect(SelectEvent event) {
     	Company company = (Company) event.getObject();
     	this.setId(company.getId());
     	this.setRagioneSociale(company.getRagioneSociale());
