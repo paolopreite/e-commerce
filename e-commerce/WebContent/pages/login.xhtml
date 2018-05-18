@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://primefaces.org/ui"
+	  xmlns:fl = "http://java.sun.com/jsf/facelets" >
+	  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+
+	<h:head>
+ 		<title>e-commerce</title> 
+	</h:head>
+	
+	<h:body>
+		<fl:composition template="/template/Template_default.xhtml">
+		<fl:define name="content">
+		 <h1 align="center"><code>Sign in to your account:</code></h1>
+		 
+		 <h:form id="test">
+		 	<label for="username">Username:</label>
+		 	<ui:inputText id="username" value="#{usermanager.username}" required="true" requiredMessage="Campo obbligatorio">
+		 	<f:validateLength minimum="3"></f:validateLength>
+		 	</ui:inputText>
+		 	<ui:message for="username"></ui:message>
+		 	
+		 	<br />
+		 	
+		 	<label for="password">Password:</label>
+		 	<ui:inputText id="password" value="#{usermanager.password}" required="true" requiredMessage="Campo obbligatorio">
+		 	<f:validateLength minimum="8"></f:validateLength>
+		 	</ui:inputText>
+		 	<ui:message for="password"></ui:message>
+		 	
+		 	<br />
+
+			<ui:commandButton actionListener="#{usermanager.checkLogin(usermanager.username,usermanager.password)}" value="Login" ajax="false">
+ 		 	</ui:commandButton> 
+
+		 </h:form>
+		 
+		 </fl:define> 
+ 		</fl:composition> 
+	</h:body>
+	
+</html>

@@ -5,134 +5,134 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_user")
+@Table(name="user")
 public class User {
-
-	private long id;
+  
+	private Long id;
+	private String nome;
+	private String cognome;
 	private String username;
 	private String password;
-	private String firstName;
-	private String lastName;
-	private String addressStreet;
-	private String addressZip;
-	private String addressCity;
-	private String addressProvence;
-	private String phone;
-	private String email;
-	private long roleId;
-	private long companyId;
+	private String country;
+	private String city;
+	private String address;
+	private String cap;
+	private Role role;
+	private Company company;
+
+	
+	public User() {
+	}
 	
 	@Id
-	@Column(name="id", nullable=false, columnDefinition="integer")
+	@Column(name="id_user",nullable=false,updatable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public long getId() {
+	
+	public  Long getId() {
 		return id;
 	}
 	
-	@Column(name="username", nullable=false, columnDefinition="varchar", length=45)
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	@Column(name="nome",nullable=false,length=30)
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	@Column(name="cognome",nullable=false,length=30)
+	public String getCognome() {
+		return cognome;
+	}
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+
+	@Column(name="username",nullable=false,length=20)
 	public String getUsername() {
 		return username;
 	}
-	
-	@Column(name="password", nullable=false, columnDefinition="varchar", length=45)
-	public String getPassword() {
-		return password;
-	}
-	
-	@Column(name="first_name", nullable=false, columnDefinition="varchar", length=45)
-	public String getFirstName() {
-		return firstName;
-	}
-	
-	@Column(name="last_name", nullable=false, columnDefinition="varchar", length=45)
-	public String getLastName() {
-		return lastName;
-	}
-	
-	@Column(name="address_street", nullable=false, columnDefinition="varchar", length=45)
-	public String getAddressStreet() {
-		return addressStreet;
-	}
-	
-	@Column(name="address_zip", nullable=false, columnDefinition="varchar", length=45)
-	public String getAddressZip() {
-		return addressZip;
-	}
-	
-	@Column(name="address_city", nullable=false, columnDefinition="varchar", length=45)
-	public String getAddressCity() {
-		return addressCity;
-	}
-	
-	@Column(name="address_provence", nullable=false, columnDefinition="varchar", length=45)
-	public String getAddressProvence() {
-		return addressProvence;
-	}
-	
-	@Column(name="phone", nullable=true, columnDefinition="varchar", length=45)
-	public String getPhone() {
-		return phone;
-	}
-	
-	@Column(name="email", nullable=false, columnDefinition="varchar", length=45)
-	public String getEmail() {
-		return email;
-	}
-	
-	@Column(name="role_id", nullable=false, columnDefinition="integer")
-	public long getRoleId() {
-		return roleId;
-	}
-	
-	@Column(name="company_id", nullable=false, columnDefinition="integer")
-	public long getCompanyId() {
-		return companyId;
-	}
-	
-	
-	public void setId(long id) {
-		this.id = id;
-	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	@Column(name="password",nullable=false,length=8)
+	public String getPassword() {
+		return password;
+	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+
+	@Column(name="country",nullable=false,length=30)
+	public final String getCountry() {
+		return country;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+
+	public final void setCountry(String country) {
+		this.country = country;
 	}
-	public void setAddressStreet(String addressStreet) {
-		this.addressStreet = addressStreet;
+
+	@Column(name="city",nullable=false,length=100)
+	public final String getCity() {
+		return city;
 	}
-	public void setAddressZip(String addressZip) {
-		this.addressZip = addressZip;
+
+	public final void setCity(String city) {
+		this.city = city;
 	}
-	public void setAddressCity(String addressCity) {
-		this.addressCity = addressCity;
+
+	@Column(name="address",nullable=false,length=100)
+	public final String getAddress() {
+		return address;
 	}
-	public void setAddressProvence(String addressProvence) {
-		this.addressProvence = addressProvence;
+
+	public final void setAddress(String address) {
+		this.address = address;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+
+	@Column(name="cap",nullable=false,length=10)
+	public final String getCap() {
+		return cap;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public final void setCap(String cap) {
+		this.cap = cap;
 	}
-	public void setRoleId(long roleId) {
-		this.roleId = roleId;
+
+	@ManyToOne()//(cascade = CascadeType.ALL)*/
+	@JoinColumn(name="id_role")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	public final Role getRole() {
+		return role;
 	}
-	public void setCompanyId(long companyId) {
-		this.companyId = companyId;
+
+	public final void setRole(Role role) {
+		this.role = role;
 	}
-	
-	
-	
+
+	@ManyToOne()//(cascade = CascadeType.ALL)
+	@JoinColumn(name="id_company")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	public final Company getCompany() {
+		return company;
+	}
+
+	public final void setCompany(Company company) {
+		this.company = company;
+	}
 }

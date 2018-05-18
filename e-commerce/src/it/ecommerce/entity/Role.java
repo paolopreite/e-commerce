@@ -8,41 +8,45 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_role")
+@Table(name="role")
 public class Role {
+	
+	private Long id;
+	private String nome;
+	private String descrizione;
 
-	private long _id;
-	private String name;
-	private String description;
+	public Role() {
+		
+	}
 	
 	@Id
-	@Column(name="id", nullable=false, columnDefinition="integer")
+	@Column(name="id_role",nullable=false,updatable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public long get_id() {
-		return _id;
+	
+	public Long getId() {
+		return id;
 	}
-	
-	@Column(name="name", nullable=false, columnDefinition="varchar", length=45)
-	public String getName() {
-		return name;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	
-	@Column(name="description", nullable=true, columnDefinition="varchar", length=45)
-	public String getDescription() {
-		return description;
+
+	@Column(name="nome",nullable=false,length=30)
+	public String getNome() {
+		return nome;
 	}
-	
-	
-	
-	public void set_id(long _id) {
-		this._id = _id;
+
+	public  void setNome(String nome) {
+		this.nome = nome;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	@Column(name="descrizione",nullable=false,length=100)
+	public  String getDescrizione() {
+		return descrizione;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+
+	public  void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
 	}
-	
-	
+
 }

@@ -8,94 +8,63 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_company")
+@Table(name="company")
 public class Company {
+	
+	private Long id;
+	private String ragioneSociale; 
+	private String partitaIva;
+	private String codiceFiscale;
+	private String descrizione;
+	
+	public Company() {
+	}
 
-	private long _id;
-	private String businessName;
-	private String vatNumber;
-	private String addressStreet;
-	private String addressZip;
-	private String addressCity;
-	private String addressProvence;
-	private String email;
-	private String phone;
-	
 	@Id
-	@Column(name="id", nullable=false, columnDefinition="integer")
+	@Column(name="id_company",nullable=false,updatable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public long get_id() {
-		return _id;
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
-	@Column(name="business_name", nullable=false, columnDefinition="varchar",length=45)
-	public String getBusinessName() {
-		return businessName;
+	@Column(name="ragione_sociale",nullable=false,length=150)
+	public String getRagioneSociale() {
+		return ragioneSociale;
 	}
-	
-	@Column(name="vat_number", nullable=false, columnDefinition="varchar",length=45)
-	public String getVatNumber() {
-		return vatNumber;
+
+	public void setRagioneSociale(String ragioneSociale) {
+		this.ragioneSociale = ragioneSociale;
 	}
-	
-	@Column(name="address_street", nullable=false, columnDefinition="varchar",length=45)
-	public String getAddressStreet() {
-		return addressStreet;
+
+	@Column(name="partita_iva",nullable=false,length=50)
+	public String getPartitaIva() {
+		return partitaIva;
 	}
-	
-	@Column(name="address_zip", nullable=false, columnDefinition="varchar",length=45)
-	public String getAddressZip() {
-		return addressZip;
+
+	public void setPartitaIva(String partitaIva) {
+		this.partitaIva = partitaIva;
 	}
-	
-	@Column(name="address_city", nullable=false, columnDefinition="varchar",length=45)
-	public String getAddressCity() {
-		return addressCity;
+
+	@Column(name="codice_fiscale",nullable=false,length=30)
+	public String getCodiceFiscale() {
+		return codiceFiscale;
 	}
-	
-	@Column(name="address_provence", nullable=false, columnDefinition="varchar",length=45)
-	public String getAddressProvence() {
-		return addressProvence;
+
+	public void setCodiceFiscale(String codiceFiscale) {
+		this.codiceFiscale = codiceFiscale;
 	}
-	
-	@Column(name="email", nullable=true, columnDefinition="varchar",length=45)
-	public String getEmail() {
-		return email;
+
+	@Column(name="descrizione",nullable=false,length=100)
+	public String getDescrizione() {
+		return descrizione;
 	}
-	
-	@Column(name="phone", nullable=true, columnDefinition="varchar",length=45)
-	public String getPhone() {
-		return phone;
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
 	}
-	public void set_id(long _id) {
-		this._id = _id;
-	}
-	public void setBusinessName(String businessName) {
-		this.businessName = businessName;
-	}
-	public void setVatNumber(String vatNumber) {
-		this.vatNumber = vatNumber;
-	}
-	public void setAddressStreet(String addressStreet) {
-		this.addressStreet = addressStreet;
-	}
-	public void setAddressZip(String addressZip) {
-		this.addressZip = addressZip;
-	}
-	public void setAddressCity(String addressCity) {
-		this.addressCity = addressCity;
-	}
-	public void setAddressProvence(String addressProvence) {
-		this.addressProvence = addressProvence;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
-	
-	
-	
-}
+
+}	
