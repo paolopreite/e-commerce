@@ -1,6 +1,11 @@
 package it.ecommerce.view;
 
 import java.io.Serializable;
+
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,31 +18,28 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.ws.rs.GET;
 
+
 import org.primefaces.event.SelectEvent;
 
 import it.ecommerce.business.CompanyBeanLocal;
 import it.ecommerce.business.RoleBeanLocal;
 import it.ecommerce.business.UserBeanLocal;
 
+import it.ecommerce.entity.Role;
 import it.ecommerce.entity.User;
 
 
-@ManagedBean(name = "usermanager")
-//@SessionScoped
+@ManagedBean(name="usermanager")
 @RequestScoped
-public class UserManagedBean implements Serializable{
+public class UserManagedBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	//Dichiaro le variabili BeanLocal (Business Layer)
+
 	@EJB
-	private UserBeanLocal ubl;
-
-
-
-/*	With a @ManagedProperty, which sets the parameter as managed bean property.
-	@ManagedProperty("#{param.someparam}")  -> Request Scope
-	private String someparam;*/
-
+	private UserBeanLocal userBusinnes;
+	@EJB
+	private RoleBeanLocal roleBusinnes;
+	@EJB
+	private CompanyBeanLocal companyBusinnes;
 	private Long id;
 	private String nome;
 	private String cognome;
@@ -48,169 +50,181 @@ public class UserManagedBean implements Serializable{
 	@ManagedProperty(value="#{param.password}")
 	private String password;
 
-	 
 	private String country;
 	private String city;
 	private String address;
 	private String cap;
-	private Long idrole;
-	private Long idcompany;
+
+	private Long idRole;
+	private Long idCompany;
+	private User selectedUser;
 	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCap() {
+		return cap;
+	}
+
+	public void setCap(String cap) {
+		this.cap = cap;
+	}
 	
-	 
 	public UserManagedBean() {
+
 	}
 
-
-
-	public final Long getId() {
-		return id;
-	}
-
-
-
-	public final void setId(Long id) {
-		this.id = id;
-	}
-
-
-
-	public final String getNome() {
+	public String getNome() {
 		return nome;
 	}
 
 
-
-	public final void setNome(String nome) {
-		this.nome = nome;
+	public void setNome(String n) {
+		nome = n;
 	}
 
 
-
-	public final String getCognome() {
+	public String getCognome() {
 		return cognome;
 	}
 
 
-
-	public final void setCognome(String cognome) {
-		this.cognome = cognome;
+	public void setCognome(String c) {
+		cognome = c;
 	}
 
 
-
-	public final String getUsername() {
-		return username;
+	public Long getIdRole() {
+		return idRole;
 	}
 
 
-
-	public final void setUsername(String username) {
-		this.username = username;
+	public void setIdRole(Long id) {
+		idRole = id;
 	}
 
-
-
-	public final String getPassword() {
-		return password;
+	public Long getIdCompany() {
+		return idCompany;
 	}
 
-
-
-	public final void setPassword(String password) {
-		this.password = password;
+	public void setIdCompany(Long idCompany) {
+		this.idCompany = idCompany;
+	}
+	
+	public Long getId() {
+		return id;
 	}
 
-
-
-	public final String getCountry() {
-		return country;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-
-
-	public final void setCountry(String country) {
-		this.country = country;
+	public User getSelectedUser() {
+		return selectedUser;
 	}
 
-
-
-	public final String getCity() {
-		return city;
+	public void setSelectedUser(User selectedUser) {
+		this.selectedUser = selectedUser;
 	}
 
+	public void saveUser() {
+		if(getId() != null) {
+			User user = userBusinnes.getUserByID(getId());
+			user.setCognome(getCognome());
+		    user.setNome(getNome());
+		    user.setUsername(getUsername());
+		    user.setPassword(getPassword());
+		    user.setCountry(getCountry());
+		    user.setCity(getCity());
+		    user.setAddress(getAddress());
+		    user.setCap(getCap());
+		    user.setUserRole(roleBusinnes.getRoleByID(getIdRole()));
+		    user.setUserCompany(companyBusinnes.getCompanyByID(getIdCompany()));
 
+		    userBusinnes.updateUser(user);
+		} else {
+			User user = new User();
+		    user.setCognome(getCognome());
+		    user.setNome(getNome());
+		    user.setUsername(getUsername());
+		    user.setPassword(getPassword());
+		    user.setCountry(getCountry());
+		    user.setCity(getCity());
+		    user.setAddress(getAddress());
+		    user.setCap(getCap());
+		    user.setUserRole(roleBusinnes.getRoleByID(getIdRole()));
+		    user.setUserCompany(companyBusinnes.getCompanyByID(getIdCompany()));
 
-	public final void setCity(String city) {
-		this.city = city;
+		    userBusinnes.addUser(user);
+		}
 	}
-
-
-
-	public final String getAddress() {
-		return address;
+	
+	public List<User> getUsersList() {
+		return userBusinnes.findAllUser();
 	}
-
-
-
-	public final void setAddress(String address) {
-		this.address = address;
-	}
-
-
-
-	public final String getCap() {
-		return cap;
-	}
-
-
-
-	public final void setCap(String cap) {
-		this.cap = cap;
-	}
-
-
-
-	public final Long getIdrole() {
-		return idrole;
-	}
-
-
-
-	public final void setIdrole(Long idrole) {
-		this.idrole = idrole;
-	}
-
-
-
-	public final Long getIdcompany() {
-		return idcompany;
-	}
-
-
-
-	public final void setIdcompany(Long idcompany) {
-		this.idcompany = idcompany;
-	}
+	
+	public void deleteUser(Long id) {
+		userBusinnes.deleteUser(id);
+    }
+	
+    public void onRowSelect(SelectEvent event) {
+    	User user = (User) event.getObject();
+    	this.setId(user.getId());
+    	this.setNome(user.getNome());
+    	this.setCognome(user.getCognome());
+    	this.setUsername(user.getUsername());
+    	this.setPassword(user.getPassword());
+    	this.setCountry(user.getCountry());
+    	this.setCity(user.getCity());
+    	this.setAddress(user.getAddress());
+    	this.setCap(user.getCap());
+    	this.setIdRole(user.getUserRole().getId());
+    	this.setIdCompany(user.getUserCompany().getId());
+    }
 
 	//Va richiamato nel xhtml senza il get e con la prima lettera minuscola (es:usermanager.listUser)
-	public List<User> getListUser() 
-	{
+	public List<User> getListUser() {
 		return ubl.findAllUser();
 	}
 	
-	
-	public User checkLogin(String user,String pwd)
-	{
+	public User checkLogin(String user,String pwd) {
 		return ubl.login(user,pwd);
 	}
-	
-	
-	
-
-/*	public void onRowSelect(SelectEvent event) {
-        FacesMessage msg = new FacesMessage("User Selected",this.getNome());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }*/
-	
 }

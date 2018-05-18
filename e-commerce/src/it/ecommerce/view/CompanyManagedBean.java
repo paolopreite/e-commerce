@@ -1,77 +1,110 @@
 package it.ecommerce.view;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.RequestScoped;
 
 import org.primefaces.event.SelectEvent;
 
 import it.ecommerce.business.CompanyBeanLocal;
-import it.ecommerce.business.RoleBeanLocal;
-import it.ecommerce.business.UserBeanLocal;
+
 import it.ecommerce.entity.Company;
 import it.ecommerce.entity.Role;
-import it.ecommerce.entity.User;
 
-@ManagedBean(name = "companymanager")
-@SessionScoped
-public class CompanyManagedBean implements Serializable{
+
+@ManagedBean(name="companymanager")
+@RequestScoped
+public class CompanyManagedBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	//Dichiaro le variabili BeanLocal (Business Layer)
-	@EJB
-	private CompanyBeanLocal cbl;
-	
-	private String ragioneSociale; 
 	private String partitaIva;
-	private String codiceFiscale;
+	private String ragioneSociale;
 	private String descrizione;
+	private Long   id;
+	private Company selectedCompany;
 	
-	
-	
-	public final String getRagioneSociale() {
-		return ragioneSociale;
+	@EJB
+	private CompanyBeanLocal companyBusinnes;
+	public Long getId() {
+		return id;
 	}
-	public final void setRagioneSociale(String ragioneSociale) {
-		this.ragioneSociale = ragioneSociale;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public final String getPartitaIva() {
+
+	public Company getSelectedCompany() {
+		return selectedCompany;
+	}
+
+	public void setSelectedCompany(Company selectedCompany) {
+		this.selectedCompany = selectedCompany;
+	}
+
+	public CompanyManagedBean() {
+	}
+	
+	public String getPartitaIva() {
 		return partitaIva;
 	}
-	public final void setPartitaIva(String partitaIva) {
+
+	public void setPartitaIva(String partitaIva) {
 		this.partitaIva = partitaIva;
 	}
-	public final String getCodiceFiscale() {
-		return codiceFiscale;
+
+	public String getRagioneSociale() {
+		return ragioneSociale;
 	}
-	public final void setCodiceFiscale(String codiceFiscale) {
-		this.codiceFiscale = codiceFiscale;
+
+	public void setRagioneSociale(String ragioneSociale) {
+		this.ragioneSociale = ragioneSociale;
 	}
-	public final String getDescrizione() {
+
+	public String getDescrizione() {
 		return descrizione;
 	}
-	public final void setDescrizione(String descrizione) {
+
+	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+
+	public List<Company> getCompaniesList() {
+		List<Company> r = companyBusinnes.findAllRole();
+		
+		return r;
+		
+	}
 	
-	public List<Company> getListCompany() {
-		List<Company> companies= cbl.findAllCompany();
-		return companies;
+	public void saveCompany () {
+		
+		if (getId() != null) {
+			Company company = companyBusinnes.getCompanyByID(getId());
+			company.setRagioneSociale(getRagioneSociale());
+			company.setPartitaIva(getPartitaIva());
+			company.setDescrizione(getDescrizione());
+
+			companyBusinnes.updateCompany(company);
+		} else {
+			Company company = new Company();
+			company.setRagioneSociale(getRagioneSociale());
+			company.setPartitaIva(getPartitaIva());
+			company.setDescrizione(getDescrizione());
+	
+		    companyBusinnes.addCompany(company);
+		}
 	}
 	
 	public void deleteCompany(Long id) {
-		cbl.deleteCompany(id);
+		companyBusinnes.deleteCompany(id);
+  }
+	
+  public void onRowSelect(SelectEvent event) {
+    	Company company = (Company) event.getObject();
+    	this.setId(company.getId());
+    	this.setRagioneSociale(company.getRagioneSociale());
+    	this.setPartitaIva(company.getPartitaIva());
+    	this.setDescrizione(company.getDescrizione());
     }
-	
-/*	public void onRowSelect(SelectEvent event) {
-        FacesMessage msg = new FacesMessage("Company Selected",this.getRagioneSociale());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }*/
-	
 }

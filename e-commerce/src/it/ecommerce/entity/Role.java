@@ -20,9 +20,8 @@ public class Role {
 	}
 	
 	@Id
-	@Column(name="id_role",nullable=false,updatable=false)
+	@Column(name="id",nullable=false,updatable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	
 	public Long getId() {
 		return id;
 	}
@@ -47,6 +46,5 @@ public class Role {
 
 	public  void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
-	}
-
+	}	
 }

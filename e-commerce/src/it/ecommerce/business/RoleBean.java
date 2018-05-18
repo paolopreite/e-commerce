@@ -28,24 +28,21 @@ public class RoleBean implements RoleBeanLocal {
        
     }
 
-
+	@Override
 	public void addRole(Role r) {
 		em.persist(r);
 		
 	}
 	
 	@Override
-	public void updateRole(Long id) {
-		Role r= getRoleByID(id);
-		em.merge(r);
-		
-	}
+	public void updateRole(Role r) {
+    em.merge(r);
+  }
 
 	@Override
 	public void deleteRole(Long id) {
-		Role r= getRoleByID(id);
-		em.remove(r);
-		
+		Role r = getRoleByID(id);
+	  em.remove(r);
 	}
 
 	@GET
@@ -53,16 +50,13 @@ public class RoleBean implements RoleBeanLocal {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Role getRoleByID(@PathParam("id_role")Long id) {
 		return em.find(Role.class, id);
-		
 	}
 
-	@SuppressWarnings("unchecked")
 	@GET
 	@Path(value="/role/lista")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Role> findAllRole() {
-		return em.createQuery("SELECT r FROM Role r").getResultList();
-		
+		return em.createQuery("SELECT r FROM Role r").getResultList();		
 	}
 
 }

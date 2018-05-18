@@ -25,7 +25,6 @@ public class CompanyBean implements CompanyBeanLocal {
 	EntityManager em;
 	
     public CompanyBean() {
-        
     }
 
 	@Override
@@ -35,28 +34,23 @@ public class CompanyBean implements CompanyBeanLocal {
 	}
 
 	@Override
-	public void updateCompany(Long id) {
-		Company c= this.getCompanybyID(id);
+	public void updateCompany(Company c) {
 		em.merge(c);
-	}
-
+  }
+  
 	@Override
 	public void deleteCompany(Long id) {
-		Company c= getCompanybyID(id);
-		em.remove(c);
-		
+		Company c = getCompanyByID(id);
+	    em.remove(c);
 	}
-
 
 	@GET
 	@Path(value="/company/lista/{id_company}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Company getCompanybyID(@PathParam("id_company")Long id) {
+	public Company getCompanyByID(@PathParam("id_company")Long id) {
 		return em.find(Company.class, id);
-		
 	}
 
-	@SuppressWarnings("unchecked")
 	@GET
 	@Path(value="/company/lista")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -64,5 +58,4 @@ public class CompanyBean implements CompanyBeanLocal {
 		return em.createQuery("SELECT c FROM Company c").getResultList();
 		
 	}
-
 }
