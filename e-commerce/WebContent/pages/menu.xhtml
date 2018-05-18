@@ -2,13 +2,15 @@
 <html xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:ui="http://primefaces.org/ui"
-	  xmlns:fl = "http://java.sun.com/jsf/facelets">
+	  xmlns:fl = "http://java.sun.com/jsf/facelets" >
+	  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+
 	<h:head>
- 		<title>e-commerce</title> 
+		<title>e-commerce</title>
 	</h:head>
-	<h:body id="body">
-		<fl:composition template="/template/Template_default.xhtml">
-		<fl:define name="menu">
+
+	<h:body>
 		<h:form>
 		 	 <ui:menubar>
 		 	 <ui:submenu label ="Main">
@@ -16,9 +18,13 @@
 			 <ui:menuitem value="Accedi" url="/pages/login.xhtml" />  
 			 <ui:menuitem value="Registrati" url="" /> 
 			 </ui:submenu>
+			 
+			 <ui:submenu label ="Display Data">
+			 <ui:menuitem value="All Users" url="/pages/users.xhtml" />  
+			 <ui:menuitem value="All Roles" url="/pages/roles.xhtml" /> 
+			 <ui:menuitem value="All Companies" url="/pages/companies.xhtml" />  
+			 </ui:submenu>
 		     </ui:menubar>
 	     </h:form>
-		</fl:define>
-		</fl:composition>
 	</h:body>
 </html>

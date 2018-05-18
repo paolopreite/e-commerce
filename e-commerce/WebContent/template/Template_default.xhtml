@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:head>
+<meta charset="ISO-8859-1"></meta>
+</h:head>
+
+<h:body>
+
+
+<ui:insert name ="header">
+<ui:include src="/pages/header.xhtml"></ui:include>
+</ui:insert>
+
+<ui:insert name ="menu">
+<ui:include src="/pages/menu.xhtml"></ui:include>
+<pre><h:outputText value=""/></pre> 				<!-- spazio -->
+</ui:insert> 
+
+<ui:insert name ="content">
+</ui:insert> 
+
+<ui:insert name ="footer">
+<ui:include src="/pages/footer.xhtml"></ui:include>
+</ui:insert>
+
+
+</h:body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://primefaces.org/ui">
+	<h:head>
+		<title>e-commerce</title>
+	</h:head>
+	<h:body>
+		<h1>Tabella Ruoli</h1>
+		
+		<h:selectOneMenu value="#{rolemanager.idRole}">
+   			<f:selectItems value="#{rolemanager.rolesList}" var="r"
+   			itemLabel="#{r.descrizione}" itemValue="#{r.id}" />
+   		</h:selectOneMenu>
+	</h:body>
+</html>

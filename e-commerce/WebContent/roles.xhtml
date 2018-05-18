@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://primefaces.org/ui"
+	  xmlns:u="http://java.sun.com/jsf/facelets">
+	<h:head>
+		<title>Tabella Ruoli</title>
+	</h:head>
+	<h:body>
+		<u:composition template="template/default.xhtml">
+			<u:define name="content">
+				<h:form id="tabellaForm">
+						<ui:dataTable
+							value="#{rolemanager.rolesList}" var="elemento" id="tabella"
+							selectionMode="single" selection="#{rolemanager.selectedRole}" rowKey="#{elemento.id}">
+					    <f:facet name="header">
+			            	Tabella Ruoli
+			        	</f:facet>
+				        <ui:ajax event="rowSelect" listener="#{rolemanager.onRowSelect}" oncomplete="PF('inserimento').show()" update=":inserimentoForm:inserimentoDetail">
+							<f:setPropertyActionListener value="" target="#{rolemanager.idRuolo}"/>
+							<f:setPropertyActionListener value="" target="#{rolemanager.nome}"/>
+							<f:setPropertyActionListener value="" target="#{rolemanager.descrizione}"/>
+					    </ui:ajax>
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Nome"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.nome}"></h:outputText>
+							</ui:column>
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Descrizione"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.descrizione}"></h:outputText>
+							</ui:column>
+							<ui:column>
+								<ui:commandButton value="Cancella" actionListener="#{rolemanager.deleteRole(elemento.id)}" update="tabella" />
+							</ui:column>
+						</ui:dataTable>
+					</h:form>
+					<h:form id="inserimentoForm">
+						<ui:dialog id="inserimentoDialog" widgetVar="inserimento" width="400" height="500" modal="true">
+							<ui:panel id="inserimentoDetail">
+								<h:inputHidden id="idRuolo" value="#{rolemanager.idRuolo}"/>
+								<ui:panelGrid columns="2">	
+									<h:outputLabel value="Nome" />
+									<ui:inputText id="nome" value="#{rolemanager.nome}" required="true"/>
+									<h:outputLabel value="Descrizione" />
+									<ui:inputText id="descrizione" value="#{rolemanager.descrizione}" required="true" />
+								</ui:panelGrid>
+								<ui:commandButton actionListener="#{rolemanager.saveRole}" onclick="inserimento.close();" value="Salva Ruolo"></ui:commandButton>
+							</ui:panel>
+						</ui:dialog>
+					<ui:commandButton type="button" onclick="PF('inserimento').show();" value="Aggiungi ruolo"></ui:commandButton>
+				</h:form>
+			</u:define>
+		</u:composition>
+	</h:body>
+</html>

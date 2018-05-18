@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://primefaces.org/ui" 
+	  xmlns:fl = "http://java.sun.com/jsf/facelets">
+	  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+<!-- <script src="listaUser.js" id="myscript"></script> -->
+	<h:head>
+		<title>e-commerce</title>
+	</h:head>
+	<h:body>
+   
+    <fl:composition template="/template/Template_default.xhtml">
+	<fl:define name="content">
+		<ui:dataTable value="#{usermanager.listUser}" var="elemento" id="tabella"  
+			selectionMode="single" rowKey="#{elemento.nome}" selection="#{usermanager.nome}">
+				<f:facet name="header">
+				<h:outputText value="Lista Utenti"></h:outputText>
+				</f:facet>
+				<ui:column>
+					<f:facet name="header">
+						<h:outputText value="Nome"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{elemento.nome}"></h:outputText>
+				</ui:column>
+				<ui:column>
+					<f:facet name="header">
+						<h:outputText value="Cognome"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{elemento.cognome}"></h:outputText>
+				</ui:column>
+				<ui:column>
+					<f:facet name="header">
+						<h:outputText value="Username"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{elemento.username}"></h:outputText>
+				</ui:column>
+				<ui:column>
+					<f:facet name="header">
+						<h:outputText value="Password"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{elemento.password}"></h:outputText>
+				</ui:column>
+				<ui:column>
+					<f:facet name="header">
+						<h:outputText value="Country"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{elemento.country}"></h:outputText>
+				</ui:column>
+				<ui:column>
+					<f:facet name="header">
+						<h:outputText value="City"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{elemento.city}"></h:outputText>
+				</ui:column>
+				<ui:column>
+					<f:facet name="header">
+						<h:outputText value="Address"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{elemento.address}"></h:outputText>
+				</ui:column>
+				<ui:column>
+					<f:facet name="header">
+						<h:outputText value="Cap"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{elemento.cap}"></h:outputText>
+				</ui:column>
+			</ui:dataTable>
+		  </fl:define>
+ 		</fl:composition> 
+	</h:body>
+</html>
