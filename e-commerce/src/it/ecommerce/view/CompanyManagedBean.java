@@ -100,7 +100,7 @@ public class CompanyManagedBean implements Serializable {
 		companyBusinnes.deleteCompany(id);
   }
 	
-  public void onRowSelect(SelectEvent event) {
+	public void onRowSelect(SelectEvent event) {
     	Company company = (Company) event.getObject();
     	this.setId(company.getId());
     	this.setRagioneSociale(company.getRagioneSociale());
@@ -109,11 +109,19 @@ public class CompanyManagedBean implements Serializable {
     	this.setDescrizione(company.getDescrizione());
     }
 
-public final String getCodiceFiscale() {
+  	public final String getCodiceFiscale() {
 	return codiceFiscale;
-}
+	}
 
-public final void setCodiceFiscale(String codiceFiscale) {
+	public final void setCodiceFiscale(String codiceFiscale) {
 	this.codiceFiscale = codiceFiscale;
-}
+	}
+
+	public void initCompany()
+	{
+		this.setRagioneSociale(null);
+		this.setPartitaIva(null);
+		this.setCodiceFiscale(null);
+		this.setDescrizione(null);
+	}
 }

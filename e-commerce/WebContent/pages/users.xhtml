@@ -95,21 +95,21 @@
 							<h:inputHidden id="id" value="#{usermanager.id}"/>
 							<ui:panelGrid columns="2">
 								<h:outputLabel value="Nome" />
-								<ui:inputText id="nome" value="#{usermanager.nome}" required="true"/>
+								<ui:inputText id="nome" value="#{usermanager.nome}" required="true" autocomplete="off" />
 								<h:outputLabel value="Cognome" />
-								<ui:inputText id="cognome" value="#{usermanager.cognome}" required="true" />
+								<ui:inputText id="cognome" value="#{usermanager.cognome}" required="true" autocomplete="off" />
 								<h:outputLabel value="Username" />
-								<ui:inputText id="username" value="#{usermanager.username}" required="true"/>
+								<ui:inputText id="username" value="#{usermanager.username}" required="true" autocomplete="off" />
 								<h:outputLabel value="Password" />
-								<ui:inputText id="password" value="#{usermanager.password}" required="true" />
+								<ui:inputText id="password" value="#{usermanager.password}" required="true" autocomplete="off" />
 								<h:outputLabel value="Country" />
-								<ui:inputText id="country" value="#{usermanager.country}" required="true" />
+								<ui:inputText id="country" value="#{usermanager.country}" required="true" autocomplete="off" />
 								<h:outputLabel value="City" />
-								<ui:inputText id="city" value="#{usermanager.city}" required="true" />
+								<ui:inputText id="city" value="#{usermanager.city}" required="true" autocomplete="off" />
 								<h:outputLabel value="address" />
-								<ui:inputText id="address" value="#{usermanager.address}" required="true" />
+								<ui:inputText id="address" value="#{usermanager.address}" required="true" autocomplete="off" />
 								<h:outputLabel value="Cap" />
-								<ui:inputText id="cap" value="#{usermanager.cap}" required="true" />
+								<ui:inputText id="cap" value="#{usermanager.cap}" required="true" autocomplete="off" />
 								<h:outputLabel value="Ruolo" />
 								<h:selectOneMenu value="#{usermanager.idRole}">
 		   							<f:selectItems value="#{rolemanager.rolesList}" var="r"
@@ -124,7 +124,7 @@
 							<ui:commandButton actionListener="#{usermanager.saveUser}" onclick="inserimento.close();" value="Salva Utente"></ui:commandButton>
 						</ui:panel>
 					</ui:dialog>
-					<ui:commandButton type="button" onclick="PF('inserimento').show();" value="Aggiungi utente"></ui:commandButton>
+					<ui:commandButton  actionListener="#{usermanager.initUser}" onclick="PF('inserimento').show();" value="Aggiungi utente" update="inserimentoDetail"></ui:commandButton>
 				</h:form>
 			</fl:define>
 		</fl:composition>

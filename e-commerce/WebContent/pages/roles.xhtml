@@ -44,14 +44,14 @@
 								<h:inputHidden id="idRuolo" value="#{rolemanager.idRuolo}"/>
 								<ui:panelGrid columns="2">	
 									<h:outputLabel value="Nome" />
-									<ui:inputText id="nome" value="#{rolemanager.nome}" required="true"/>
+									<ui:inputText id="nome" value="#{rolemanager.nome}" required="true" autocomplete="off" />
 									<h:outputLabel value="Descrizione" />
-									<ui:inputText id="descrizione" value="#{rolemanager.descrizione}" required="true" />
+									<ui:inputText id="descrizione" value="#{rolemanager.descrizione}" required="true" autocomplete="off" />
 								</ui:panelGrid>
 								<ui:commandButton actionListener="#{rolemanager.saveRole}" onclick="inserimento.close();" value="Salva Ruolo"></ui:commandButton>
 							</ui:panel>
 						</ui:dialog>
-					<ui:commandButton type="button" onclick="PF('inserimento').show();" value="Aggiungi ruolo"></ui:commandButton>
+					<ui:commandButton  actionListener="#{rolemanager.initRole}" onclick="PF('inserimento').show();" value="Aggiungi ruolo" update="inserimentoDetail"></ui:commandButton>
 				</h:form>
 			</fl:define>
 		</fl:composition>
