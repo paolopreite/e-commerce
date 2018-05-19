@@ -51,6 +51,10 @@ public class Company {
 
 	@Column(name="codice_fiscale",nullable=false,length=30)
 	public String getCodiceFiscale() {
+	    if(codiceFiscale == null) {
+	        codiceFiscale = getPartitaIva();
+	    }
+	    
 		return codiceFiscale;
 	}
 
