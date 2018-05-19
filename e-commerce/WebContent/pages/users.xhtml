@@ -29,22 +29,64 @@
 					    	<f:setPropertyActionListener value="" target="#{usermanager.idRole}"/>
 					    	<f:setPropertyActionListener value="" target="#{usermanager.idCompany}"/>
 					    </ui:ajax>
+					    
 						<ui:column>
 							<f:facet name="header">
 								<h:outputText value="Nome"></h:outputText>
 							</f:facet>
 							<h:outputText value="#{elemento.nome}"></h:outputText>
 						</ui:column>
+						
 						<ui:column>
 							<f:facet name="header">
 								<h:outputText value="Cognome"></h:outputText>
 							</f:facet>
 							<h:outputText value="#{elemento.cognome}"></h:outputText>
 						</ui:column>
+						
 						<ui:column>
-							<f:facet name="header">Azioni</f:facet>
-							<ui:commandButton value="Cancella" actionListener="#{usermanager.deleteUser(elemento.id)}" update="tabella" />
+							<f:facet name="header">
+								<h:outputText value="Username"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{elemento.username}"></h:outputText>
 						</ui:column>
+						
+						<ui:column>
+							<f:facet name="header">
+								<h:outputText value="Country"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{elemento.country}"></h:outputText>
+						</ui:column>
+						
+						<ui:column>
+							<f:facet name="header">
+								<h:outputText value="City"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{elemento.city}"></h:outputText>
+						</ui:column>
+						
+						<ui:column>
+							<f:facet name="header">
+								<h:outputText value="Address"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{elemento.address}"></h:outputText>
+						</ui:column>
+						
+						<ui:column>
+							<f:facet name="header">
+								<h:outputText value="Cap"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{elemento.cap}"></h:outputText>
+						</ui:column>
+						
+						<ui:column>
+							<f:facet name="header">
+							<h:outputText value="Azioni"></h:outputText>
+							</f:facet>
+							<ui:commandButton value="Cancella" actionListener="#{usermanager.deleteUser(elemento.id)}" update="tabella" >
+							</ui:commandButton>
+						</ui:column>
+						
 					</ui:dataTable>
 			    </h:form>
 				<h:form  id="inserimentoForm">

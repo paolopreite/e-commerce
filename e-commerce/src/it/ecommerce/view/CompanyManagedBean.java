@@ -19,6 +19,7 @@ public class CompanyManagedBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String partitaIva;
 	private String ragioneSociale;
+	private String codiceFiscale;
 	private String descrizione;
 	private Long   id;
 	private Company selectedCompany;
@@ -80,6 +81,7 @@ public class CompanyManagedBean implements Serializable {
 			Company company = companyBusinnes.getCompanyByID(getId());
 			company.setRagioneSociale(getRagioneSociale());
 			company.setPartitaIva(getPartitaIva());
+			company.setCodiceFiscale(getCodiceFiscale());
 			company.setDescrizione(getDescrizione());
 
 			companyBusinnes.updateCompany(company);
@@ -87,6 +89,7 @@ public class CompanyManagedBean implements Serializable {
 			Company company = new Company();
 			company.setRagioneSociale(getRagioneSociale());
 			company.setPartitaIva(getPartitaIva());
+			company.setCodiceFiscale(getCodiceFiscale());
 			company.setDescrizione(getDescrizione());
 	
 		    companyBusinnes.addCompany(company);
@@ -102,6 +105,15 @@ public class CompanyManagedBean implements Serializable {
     	this.setId(company.getId());
     	this.setRagioneSociale(company.getRagioneSociale());
     	this.setPartitaIva(company.getPartitaIva());
+    	this.setCodiceFiscale(company.getCodiceFiscale());
     	this.setDescrizione(company.getDescrizione());
     }
+
+public final String getCodiceFiscale() {
+	return codiceFiscale;
+}
+
+public final void setCodiceFiscale(String codiceFiscale) {
+	this.codiceFiscale = codiceFiscale;
+}
 }

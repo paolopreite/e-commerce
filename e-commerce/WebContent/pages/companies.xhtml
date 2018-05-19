@@ -18,7 +18,8 @@
 					        <ui:ajax event="rowSelect" listener="#{companymanager.onRowSelect}" oncomplete="PF('inserimento').show()" update=":inserimentoForm:inserimentoDetail">
 								<f:setPropertyActionListener value="" target="#{companymanager.id}"/>
 								<f:setPropertyActionListener value="" target="#{companymanager.partitaIva}"/>
-								<f:setPropertyActionListener value="" target="#{companymanager.descrizione}"/>
+								<f:setPropertyActionListener value="" target="#{companymanager.codicefiscale}"/>
+								<f:setPropertyActionListener value="" target="#{companymanager.descrizione}"/>	
 						    </ui:ajax>
 							<ui:column>
 								<f:facet name="header">
@@ -32,7 +33,15 @@
 								</f:facet>
 								<h:outputText value="#{elemento.partitaIva}"></h:outputText>
 							</ui:column>
+							
 							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Codice Fiscale"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.codiceFiscale}"></h:outputText>
+							</ui:column>
+							<ui:column>
+							
 								<f:facet name="header">
 									<h:outputText value="Descrizione"></h:outputText>
 								</f:facet>
@@ -53,6 +62,8 @@
 									<ui:inputText id="ragioneSociale" value="#{companymanager.ragioneSociale}" required="true"/>
 									<h:outputLabel value="Partita Iva" />
 									<ui:inputText id="partitaIva" value="#{companymanager.partitaIva}" required="true" />
+									<h:outputLabel value="Codice Fiscale" />
+									<ui:inputText id="codiceFiscale" value="#{companymanager.codiceFiscale}" required="true" />
 									<h:outputLabel value="Descrizione" />
 									<ui:inputText id="descrizione" value="#{companymanager.descrizione}" required="true" />
 								</ui:panelGrid>
