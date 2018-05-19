@@ -1,48 +1,67 @@
 <!DOCTYPE html>
 <html xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:ui="http://primefaces.org/ui" 
-	  xmlns:fl = "http://java.sun.com/jsf/facelets">
-	  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+	  xmlns:ui="http://primefaces.org/ui"
+	  xmlns:fl="http://java.sun.com/jsf/facelets">
 	<h:head>
-		<title>e-commerce</title>
+		<title>Tabella Aziende</title>
 	</h:head>
 	<h:body>
-	
-	<fl:composition template="/template/Template_default.xhtml">
-		<fl:define name="content">
-				<ui:dataTable value="#{companymanager.listCompany}" var="elemento" id="tabella"  
-			selectionMode="single" rowKey="#{elemento.ragioneSociale}" selection="#{companymanager.ragioneSociale}">
-				<f:facet name="header">
-				<h:outputText value="Lista Societa"></h:outputText>
-				</f:facet>
-				<ui:column>
-					<f:facet name="header">
-						<h:outputText value="Ragione Sociale"></h:outputText>
-					</f:facet>
-					<h:outputText value="#{elemento.ragioneSociale}"></h:outputText>
-				</ui:column>
-				<ui:column>
-					<f:facet name="header">
-						<h:outputText value="Partita Iva"></h:outputText>
-					</f:facet>
-					<h:outputText value="#{elemento.partitaIva}"></h:outputText>
-				</ui:column>
-				<ui:column>
-					<f:facet name="header">
-						<h:outputText value="Codice Fiscale"></h:outputText>
-					</f:facet>
-					<h:outputText value="#{elemento.codiceFiscale}"></h:outputText>
-				</ui:column>
-				<ui:column>
-					<f:facet name="header">
-						<h:outputText value="Descrizione"></h:outputText>
-					</f:facet>
-					<h:outputText value="#{elemento.descrizione}"></h:outputText>
-				</ui:column>
-			</ui:dataTable>
-	  </fl:define>
-	</fl:composition>
+		<fl:composition template="/template/Template_default.xhtml">
+			<fl:define name="content">
+					<h:form id="tabellaForm">
+						<ui:dataTable value="#{companymanager.companiesList}" var="elemento" id="tabella"
+							selectionMode="single" selection="#{companymanager.selectedCompany}" rowKey="#{elemento.id}">
+						    <f:facet name="header">
+				            	Tabella Aziende
+				        	</f:facet>
+					        <ui:ajax event="rowSelect" listener="#{companymanager.onRowSelect}" oncomplete="PF('inserimento').show()" update=":inserimentoForm:inserimentoDetail">
+								<f:setPropertyActionListener value="" target="#{companymanager.id}"/>
+								<f:setPropertyActionListener value="" target="#{companymanager.partitaIva}"/>
+								<f:setPropertyActionListener value="" target="#{companymanager.descrizione}"/>
+						    </ui:ajax>
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Ragione Sociale"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.ragioneSociale}"></h:outputText>
+							</ui:column>
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Partita Iva"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.partitaIva}"></h:outputText>
+							</ui:column>
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Descrizione"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.descrizione}"></h:outputText>
+							</ui:column>
+							<ui:column>
+								<f:facet name="header">Azioni</f:facet>
+								<ui:commandButton value="Cancella" actionListener="#{companymanager.deleteCompany(elemento.id)}" update="tabella" />
+							</ui:column>
+						</ui:dataTable>
+					</h:form>
+					<h:form id="inserimentoForm">
+						<ui:dialog widgetVar="inserimento" width="400" height="500" modal="true">
+							<ui:panel id="inserimentoDetail">
+								<h:inputHidden id="id" value="#{companymanager.id}"/>
+								<ui:panelGrid columns="2">
+									<h:outputLabel value="Ragione Sociale" />
+									<ui:inputText id="ragioneSociale" value="#{companymanager.ragioneSociale}" required="true"/>
+									<h:outputLabel value="Partita Iva" />
+									<ui:inputText id="partitaIva" value="#{companymanager.partitaIva}" required="true" />
+									<h:outputLabel value="Descrizione" />
+									<ui:inputText id="descrizione" value="#{companymanager.descrizione}" required="true" />
+								</ui:panelGrid>
+								<ui:commandButton actionListener="#{companymanager.saveCompany}" onclick="inserimento.close();" value="Salva Azienda"></ui:commandButton>
+							</ui:panel>
+						</ui:dialog>
+					<ui:commandButton type="button" onclick="PF('inserimento').show();" value="Aggiungi Azienda"></ui:commandButton>
+				</h:form>
+			</fl:define>
+		</fl:composition>
 	</h:body>
 </html>
