@@ -94,4 +94,10 @@ public class RoleManagedBean implements Serializable {
     	this.setNome(role.getNome());
     	this.setDescrizione(role.getDescrizione());
     }
+    
+    public void initRole()
+	{
+		this.setNome(null);
+		this.setDescrizione(null);
+	}
 }

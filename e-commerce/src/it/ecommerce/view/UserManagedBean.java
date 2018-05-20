@@ -214,4 +214,16 @@ public class UserManagedBean implements Serializable {
 	public User checkLogin(String user,String pwd) {
 		return userBusinnes.login(user,pwd);
 	}
+	
+	public void initUser()
+	{
+		this.setNome(null);
+		this.setCognome(null);
+		this.setAddress(null);
+		this.setCap(null);
+		this.setCity(null);
+		this.setCountry(null);
+		this.setUsername(null);
+		this.setPassword(null);
+	}
 }

@@ -14,7 +14,7 @@
 		<fl:composition template="/template/Template_default.xhtml">
 		<fl:define name="content">
 		 <h1 align="center"><code>Sign in to your account:</code></h1>
-		 
+		 <div id="divLogin" align="center">  
 		 <h:form id="test">
 		 	<label for="username">Username:</label>
 		 	<ui:inputText id="username" value="#{usermanager.username}" required="true" requiredMessage="Campo obbligatorio">
@@ -36,7 +36,7 @@
  		 	</ui:commandButton> 
 
 		 </h:form>
-		 
+		 </div>
 		 </fl:define> 
  		</fl:composition> 
 	</h:body>
