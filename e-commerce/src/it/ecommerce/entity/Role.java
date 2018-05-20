@@ -39,7 +39,7 @@ public class Role {
 		this.nome = nome;
 	}
 
-	@Column(name="descrizione",nullable=false,length=100)
+	@Column(name="descrizione",length=100)
 	public  String getDescrizione() {
 		return descrizione;
 	}
