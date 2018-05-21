@@ -95,7 +95,9 @@
 							<h:inputHidden id="id" value="#{usermanager.id}"/>
 							<ui:panelGrid columns="2">
 								<h:outputLabel value="Nome" />
-								<ui:inputText id="nome" value="#{usermanager.nome}" required="true" autocomplete="off" />
+								<ui:inputText id="nome" value="#{usermanager.nome}" required="true" autocomplete="off" >
+								<f:validateLength minumum="3"></f:validateLength>
+								</ui:inputText>
 								<h:outputLabel value="Cognome" />
 								<ui:inputText id="cognome" value="#{usermanager.cognome}" required="true" autocomplete="off" />
 								<h:outputLabel value="Username" />
