@@ -42,11 +42,11 @@
 						<ui:dialog id="inserimentoDialog" widgetVar="inserimento" width="400" height="500" modal="true">
 							<ui:panel id="inserimentoDetail">
 								<h:inputHidden id="idRuolo" value="#{rolemanager.idRuolo}"/>
-								<ui:panelGrid columns="2">	
+								<ui:panelGrid columns="2">
 									<h:outputLabel value="Nome" />
 									<ui:inputText id="nome" value="#{rolemanager.nome}" required="true" autocomplete="off" />
 									<h:outputLabel value="Descrizione" />
-									<ui:inputText id="descrizione" value="#{rolemanager.descrizione}" required="true" autocomplete="off" />
+									<ui:inputText id="descrizione" value="#{rolemanager.descrizione}" autocomplete="off" />
 								</ui:panelGrid>
 								<ui:commandButton actionListener="#{rolemanager.saveRole}" onclick="inserimento.close();" value="Salva Ruolo"></ui:commandButton>
 							</ui:panel>
