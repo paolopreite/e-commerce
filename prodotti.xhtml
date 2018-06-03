@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://primefaces.org/ui"
+	  xmlns:fl="http://java.sun.com/jsf/facelets">
+	<h:head>
+		<title>Tabella Prodotti</title>
+	</h:head>
+	<h:body>
+		<fl:composition template="/template/Template_default.xhtml">
+			<fl:define name="content">
+				<h:form id="tabellaForm">
+						<ui:dataTable
+							value="#{productmanager.productList}" var="elemento" id="tabella"
+							selectionMode="single" selection="#{productmanager.selectedProduct}" rowKey="#{elemento.id}">
+					    <f:facet name="header">
+			            	Tabella Prodotti
+			        	</f:facet>
+			        	<ui:ajax event="rowSelect" listener="#{productmanager.onRowSelect}" oncomplete="PF('inserimento').show()" update=":inserimentoForm:inserimentoDetail">
+							<f:setPropertyActionListener value="" target="#{productmanager.id}"/>
+							<f:setPropertyActionListener value="" target="#{productmanager.nome}"/>
+							<f:setPropertyActionListener value="" target="#{productmanager.descrizione}"/>
+					    	<f:setPropertyActionListener value="" target="#{productmanager.prezzo}"/>
+					    	<f:setPropertyActionListener value="" target="#{productmanager.produttore}"/>
+					    	<f:setPropertyActionListener value="" target="#{productmanager.foto}"/>
+					    	
+					    </ui:ajax>
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Nome"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.nome}"></h:outputText>
+							</ui:column>
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Descrizione"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.descrizione}"></h:outputText>
+							</ui:column>			
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Prezzo"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.prezzo}"></h:outputText>
+							</ui:column>
+
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Produttore"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.produttore}"></h:outputText>
+							</ui:column>
+
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Foto"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.foto}"></h:outputText>
+							</ui:column>
+							
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Company"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.company.getRagioneSociale()}"></h:outputText>
+							</ui:column>
+							
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Categoria Commerciale"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.categoria.getNome()}"></h:outputText>
+							</ui:column>
+
+							<ui:column>
+								<ui:commandButton value="Cancella" actionListener="#{productmanager.deleteProdotto(elemento.id)}" update="tabella" />
+							</ui:column>
+						</ui:dataTable>
+					</h:form>
+					<h:form id="inserimentoForm">
+						<ui:dialog id="inserimentoDialog" widgetVar="inserimento" width="400" height="500" modal="true">
+							<ui:panel id="inserimentoDetail">
+								<h:inputHidden id="idProdotto" value="#{productmanager.id}"/>
+								<ui:panelGrid columns="2">	
+								
+									<h:outputLabel value="Nome" />
+									<ui:inputText id="nome" value="#{productmanager.nome}" required="true" autocomplete="off" />
+									<h:outputLabel value="Descrizione" />
+									<ui:inputText id="descrizione" value="#{productmanager.descrizione}" autocomplete="off" />
+									<h:outputLabel value="Prezzo" />
+									<ui:inputText id="prezzo" value="#{productmanager.prezzo}" autocomplete="off" />
+									<h:outputLabel value="Produttore" />
+									<ui:inputText id="produttore" value="#{productmanager.produttore}" autocomplete="off" />
+									<h:outputLabel value="Foto" />
+									<ui:inputText id="foto" value="#{productmanager.foto}" autocomplete="off" />
+									
+									<h:outputLabel value="Azienda" />
+		   	 						<h:selectOneMenu value="#{productmanager.idCompany}">
+		   								<f:selectItems value="#{companymanager.companiesList}" var="r"
+		   								itemLabel="#{r.ragioneSociale}" itemValue="#{r.id}" />
+		   							</h:selectOneMenu>
+		   							
+		   							<h:outputLabel value="Categoria Commerciale" />
+		   	 						<h:selectOneMenu value="#{productmanager.idCategoria}">
+		   								<f:selectItems value="#{categoriamanager.categoriaList}" var="m"
+		   								itemLabel="#{m.nome}" itemValue="#{m.id}" />
+		   							</h:selectOneMenu>
+								
+								</ui:panelGrid>
+ 								<ui:commandButton actionListener="#{productmanager.saveProduct}" onclick="inserimento.close();" value="Salva Prodotto"></ui:commandButton> 
+							</ui:panel>
+						</ui:dialog>
+						<ui:commandButton  actionListener="#{productmanager.initProduct}" oncomplete="PF('inserimento').show();" value="Aggiungi prodotto" update="inserimentoDetail"></ui:commandButton>
+					</h:form>
+			</fl:define>
+		</fl:composition>
+	</h:body>
+</html>
