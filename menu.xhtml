@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://primefaces.org/ui"
+	  xmlns:fl = "http://java.sun.com/jsf/facelets" >
+	<h:head>
+		<title>e-commerce</title>
+	</h:head>
+
+	<h:body>
+		<h:form>
+		 	 <ui:menubar>
+		 	 <ui:submenu label ="Main">
+		 	 <ui:menuitem value="Home" url="/home.xhtml" />  
+			 <ui:menuitem value="Accedi" url="/pages/login.xhtml" />  
+			 <ui:menuitem value="Registrati" url="/pages/registrazione.xhtml" disabled="true" /> 
+			 </ui:submenu>
+			 
+			 <ui:submenu label ="Display Data">
+			 <ui:menuitem value="All Users" url="/pages/users.xhtml" />  
+			 <ui:menuitem value="All Roles" url="/pages/roles.xhtml" /> 
+			 <ui:menuitem value="All Products" url="/pages/prodotti.xhtml" /> 
+			 <ui:menuitem value="All Categories" url="/pages/categorie.xhtml" />  
+			 <ui:menuitem value="All Companies" url="/pages/companies.xhtml" />  
+			 </ui:submenu>
+		     </ui:menubar>
+	     </h:form>
+	</h:body>
+</html>
