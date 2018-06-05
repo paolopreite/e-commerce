@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://primefaces.org/ui"
+	  xmlns:fl="http://java.sun.com/jsf/facelets">
+	<h:head>
+		<title>Tabella Categorie Commerciali</title>
+	</h:head>
+	<h:body>
+		<fl:composition template="/template/Template_default.xhtml">
+			<fl:define name="content">
+				<h:form id="tabellaForm">
+						<ui:dataTable
+							value="#{categoriamanager.categoriaList}" var="elemento" id="tabella"
+							selectionMode="single" selection="#{categoriamanager.selectedCategoria}" rowKey="#{elemento.id}">
+					    <f:facet name="header">
+			            	Tabella Ruoli
+			        	</f:facet>
+				        <ui:ajax event="rowSelect" listener="#{categoriamanager.onRowSelect}" oncomplete="PF('inserimento').show()" update=":inserimentoForm:inserimentoDetail">
+							<f:setPropertyActionListener value="" target="#{categoriamanager.id}"/>
+							<f:setPropertyActionListener value="" target="#{categoriamanager.nome}"/>
+							<f:setPropertyActionListener value="" target="#{categoriamanager.descrizione}"/>
+					    </ui:ajax>
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Nome"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.nome}"></h:outputText>
+							</ui:column>
+							<ui:column>
+								<f:facet name="header">
+									<h:outputText value="Descrizione"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{elemento.descrizione}"></h:outputText>
+							</ui:column>
+							<ui:column>
+								<ui:commandButton value="Cancella" actionListener="#{categoriamanager.deleteCategoria(elemento.id)}" update="tabella" />
+							</ui:column>
+						</ui:dataTable>
+					</h:form>
+					<h:form id="inserimentoForm">
+						<ui:dialog id="inserimentoDialog" widgetVar="inserimento" width="400" height="500" modal="true">
+							<ui:panel id="inserimentoDetail">
+								<h:inputHidden id="idCategoria" value="#{categoriamanager.id}"/>
+								<ui:panelGrid columns="2">	
+									<h:outputLabel value="Nome" />
+									<ui:inputText id="nome" value="#{categoriamanager.nome}" required="true" autocomplete="off" />
+									<h:outputLabel value="Descrizione" />
+									<ui:inputText id="descrizione" value="#{categoriamanager.descrizione}" autocomplete="off" />
+								</ui:panelGrid>
+								<ui:commandButton actionListener="#{categoriamanager.saveCategoria}" onclick="inserimento.close();" value="Salva categoria commerciale"></ui:commandButton>
+							</ui:panel>
+						</ui:dialog>
+					<ui:commandButton  actionListener="#{categoriamanager.initCategoria}" oncomplete="PF('inserimento').show();" value="Aggiungi categoria commerciale" update="inserimentoDetail"></ui:commandButton>
+				</h:form>
+			</fl:define>
+		</fl:composition>
+	</h:body>
+</html>
