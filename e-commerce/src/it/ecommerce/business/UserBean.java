@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.openejb.jee.jba.Home;
 
+import it.ecommerce.entity.Company;
 import it.ecommerce.entity.Role;
 import it.ecommerce.entity.User;
 
@@ -77,6 +78,13 @@ public class UserBean implements UserBeanLocal {
 	public List<User> getUsersByRole(Role role) {
 		return em.createQuery("SELECT u FROM User u WHERE u.role =:role")
 			      .setParameter("role", role)
+			      .getResultList();
+	}
+	
+	@GET
+	public List<User> getUsersByCompany(Company company) {
+		return em.createQuery("SELECT u FROM User u WHERE u.company =:company")
+			      .setParameter("company", company)
 			      .getResultList();
 	}
 }

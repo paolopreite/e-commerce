@@ -49,7 +49,7 @@ public class Company {
 		this.partitaIva = partitaIva;
 	}
 
-	@Column(name="codice_fiscale",nullable=false,length=30)
+	@Column(name="codice_fiscale",length=30)
 	public String getCodiceFiscale() {
 	    if(codiceFiscale == null) {
 	        codiceFiscale = getPartitaIva();
@@ -62,7 +62,7 @@ public class Company {
 		this.codiceFiscale = codiceFiscale;
 	}
 
-	@Column(name="descrizione",nullable=false,length=100)
+	@Column(name="descrizione",length=100)
 	public String getDescrizione() {
 		return descrizione;
 	}

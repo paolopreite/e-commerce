@@ -4,13 +4,17 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
 import it.ecommerce.business.CompanyBeanLocal;
+import it.ecommerce.business.UserBeanLocal;
 import it.ecommerce.entity.Company;
+import it.ecommerce.entity.Role;
 
 
 @ManagedBean(name="companymanager")
@@ -26,6 +30,8 @@ public class CompanyManagedBean implements Serializable {
 	
 	@EJB
 	private CompanyBeanLocal companyBusinnes;
+	@EJB
+	private UserBeanLocal userBusinnes;
 	public Long getId() {
 		return id;
 	}
@@ -94,10 +100,23 @@ public class CompanyManagedBean implements Serializable {
 	
 		    companyBusinnes.addCompany(company);
 		}
+		
+		cleanDialogCompany();
 	}
 	
 	public void deleteCompany(Long id) {
-		companyBusinnes.deleteCompany(id);
+		Company company = companyBusinnes.getCompanyByID(id);
+		if (!(userBusinnes.getUsersByCompany(company).size() > 0)) {
+			companyBusinnes.deleteCompany(id);
+		}
+		else {
+			RequestContext.getCurrentInstance().showMessageInDialog(
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+							"Attenzione", 
+							"Non puoi cancellare l'azienda perchè è già stato assegnato a degli utenti"
+			));
+		}
+
   }
 	
 	public void onRowSelect(SelectEvent event) {
@@ -118,6 +137,14 @@ public class CompanyManagedBean implements Serializable {
 	}
 
 	public void initCompany()
+	{
+		this.setRagioneSociale(null);
+		this.setPartitaIva(null);
+		this.setCodiceFiscale(null);
+		this.setDescrizione(null);
+	}
+	
+    public void cleanDialogCompany()
 	{
 		this.setRagioneSociale(null);
 		this.setPartitaIva(null);

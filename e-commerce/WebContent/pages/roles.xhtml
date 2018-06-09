@@ -41,7 +41,7 @@
 					</h:form>
 					<h:form id="inserimentoForm">
 						<ui:dialog id="inserimentoDialog" widgetVar="inserimento" width="500" height="500" modal="true">
-							<ui:ajax event="close" update=":inserimentoForm" listener="#{rolemanager.closeDialogRole}"/>
+							<ui:ajax event="close" update=":inserimentoForm" listener="#{rolemanager.cleanDialogRole}"/>
 							<ui:panel id="inserimentoDetail">
 								<h:inputHidden id="idRuolo" value="#{rolemanager.idRuolo}"/>
 								<ui:panelGrid columns="3">	

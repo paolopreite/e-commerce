@@ -78,7 +78,7 @@ public class RoleManagedBean implements Serializable {
 			roleBusiness.addRole(role);
 		}
 		
-		closeDialogRole();
+		cleanDialogRole();
 
 	}
 	
@@ -112,7 +112,7 @@ public class RoleManagedBean implements Serializable {
     	this.setDescrizione(role.getDescrizione());
     }
     
-    public void closeDialogRole()
+    public void cleanDialogRole()
 	{
 		this.setNome(null);
 		this.setDescrizione(null);
