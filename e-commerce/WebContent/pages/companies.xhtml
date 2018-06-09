@@ -54,23 +54,33 @@
 						</ui:dataTable>
 					</h:form>
 					<h:form id="inserimentoForm">
-						<ui:dialog widgetVar="inserimento" width="400" height="500" modal="true">
+						<ui:dialog widgetVar="inserimento" width="500" height="500" modal="true">
+							<ui:ajax event="close" update=":inserimentoForm" listener="#{companymanager.cleanDialogCompany}"/>
 							<ui:panel id="inserimentoDetail">
 								<h:inputHidden id="id" value="#{companymanager.id}"/>
-								<ui:panelGrid columns="2">
+								<ui:panelGrid columns="3">
 									<h:outputLabel value="Ragione Sociale" />
-									<ui:inputText id="ragioneSociale" value="#{companymanager.ragioneSociale}" required="true" autocomplete="off" />
+									<ui:inputText id="ragioneSociale" value="#{companymanager.ragioneSociale}" required="true"  requiredMessage="Ragione Sociale obbligatorio"/>
+									<ui:message for="ragioneSociale" />
 									<h:outputLabel value="Partita Iva" />
-									<ui:inputText id="partitaIva" value="#{companymanager.partitaIva}" required="true" autocomplete="off" />
+									<ui:inputText id="partitaIva" value="#{companymanager.partitaIva}" required="true" requiredMessage="Partita Iva obbligatorio"/>
+									<ui:message for="partitaIva" />
 									<h:outputLabel value="Codice Fiscale" />
-									<ui:inputText id="codiceFiscale" value="#{companymanager.codiceFiscale}" required="true" autocomplete="off" />
+									<ui:inputText id="codiceFiscale" value="#{companymanager.codiceFiscale}"/>
+									<br/>
 									<h:outputLabel value="Descrizione" />
-									<ui:inputText id="descrizione" value="#{companymanager.descrizione}" required="true" autocomplete="off" />
+									<ui:inputText id="descrizione" value="#{companymanager.descrizione}"/>
 								</ui:panelGrid>
-								<ui:commandButton actionListener="#{companymanager.saveCompany}" onclick="inserimento.close();" value="Salva Azienda"></ui:commandButton>
+								<ui:commandButton
+									process="@([id$=inserimentoForm])" 
+									actionListener="#{companymanager.saveCompany}"
+									oncomplete="if(!args.validationFailed){ PF('inserimento').hide();} else {PF('inserimento').show();}"
+									update="@([id$=inserimentoForm]) @([id$=tabellaForm])"
+									value="Salva Azienda">
+								</ui:commandButton>
 							</ui:panel>
 						</ui:dialog>
-					<ui:commandButton  actionListener="#{companymanager.initCompany}" onclick="PF('inserimento').show();" value="Aggiungi Azienda" update="inserimentoDetail"></ui:commandButton>
+					<ui:commandButton  type="button" actionListener="#{companymanager.initCompany}" onclick="PF('inserimento').show();" value="Aggiungi Azienda" update="inserimentoDetail"></ui:commandButton>
 				</h:form>
 			</fl:define>
 		</fl:composition>

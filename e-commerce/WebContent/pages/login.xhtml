@@ -3,8 +3,6 @@
 	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:ui="http://primefaces.org/ui"
 	  xmlns:fl = "http://java.sun.com/jsf/facelets" >
-	  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 
 	<h:head>
  		<title>e-commerce</title> 
@@ -25,9 +23,9 @@
 		 	<br />
 		 	
 		 	<label for="password">Password:</label>
-		 	<ui:inputText id="password" value="#{usermanager.password}" required="true" requiredMessage="Campo obbligatorio">
+		 	<ui:password id="password" value="#{usermanager.password}" required="true" requiredMessage="Campo obbligatorio">
 		 	<f:validateLength minimum="8"></f:validateLength>
-		 	</ui:inputText>
+		 	</ui:password>
 		 	<ui:message for="password"></ui:message>
 		 	
 		 	<br />
