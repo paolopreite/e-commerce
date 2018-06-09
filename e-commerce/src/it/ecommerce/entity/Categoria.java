@@ -30,7 +30,7 @@ public class Categoria {
 		this.id = id;
 	}
 
-	@Column(name="nome_categoria",nullable=false,length=30)
+	@Column(name="nome",nullable=false,length=30)
 	public String getNome() {
 		return nome;
 	}
@@ -39,7 +39,7 @@ public class Categoria {
 		this.nome = nome;
 	}
 
-	@Column(name="descrizione_categoria",length=100)
+	@Column(name="descrizione",length=100)
 	public  String getDescrizione() {
 		return descrizione;
 	}

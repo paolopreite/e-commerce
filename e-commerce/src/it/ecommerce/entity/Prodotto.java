@@ -25,7 +25,18 @@ public class Prodotto {
 	public Prodotto() {
 	}
 
-	@Column(name="nome_prodotto",nullable=false,length=100)
+	@Id
+	@Column(name="id",nullable=false,updatable=false)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	public final Long getId() {
+		return id;
+	}
+
+	public final void setId(Long id) {
+		this.id = id;
+	}
+	
+	@Column(name="nome",nullable=false,length=100)
 	public final String getNome() {
 		return nome;
 	}
@@ -34,7 +45,7 @@ public class Prodotto {
 		this.nome = nome;
 	}
 
-	@Column(name="descrizione_prodotto",nullable=false,length=100)
+	@Column(name="descrizione",nullable=false,length=100)
 	public final String getDescrizione() {
 		return descrizione;
 	}
@@ -43,7 +54,7 @@ public class Prodotto {
 		this.descrizione = descrizione;
 	}
 
-	@Column(name="prezzo_prodotto",nullable=false,length=100)
+	@Column(name="prezzo",nullable=false,length=100)
 	public final String getPrezzo() {
 		return prezzo;
 	}
@@ -52,7 +63,7 @@ public class Prodotto {
 		this.prezzo = prezzo;
 	}
 
-	@Column(name="produttore_prodotto",nullable=false,length=100)
+	@Column(name="produttore",nullable=false,length=100)
 	public final String getProduttore() {
 		return produttore;
 	}
@@ -61,7 +72,7 @@ public class Prodotto {
 		this.produttore = produttore;
 	}
 
-	@Column(name="foto_prodotto",nullable=false,length=150)
+	@Column(name="foto",nullable=false,length=150)
 	public final String getFoto() {
 		return foto;
 	}
@@ -90,14 +101,4 @@ public class Prodotto {
 		this.categoria = categoria;
 	}
 
-	@Id
-	@Column(name="id",nullable=false,updatable=false)
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public final Long getId() {
-		return id;
-	}
-
-	public final void setId(Long id) {
-		this.id = id;
-	}
 }
