@@ -9,6 +9,7 @@
 	<h:body>
 		<fl:composition template="/template/Template_default.xhtml">
 			<fl:define name="content">
+			
 				<h:form id="tabellaForm">
 						<ui:dataTable
 							value="#{rolemanager.rolesList}" var="elemento" id="tabella"
@@ -34,25 +35,32 @@
 								<h:outputText value="#{elemento.descrizione}"></h:outputText>
 							</ui:column>
 							<ui:column>
-								<ui:commandButton value="Cancella" actionListener="#{rolemanager.deleteRole(elemento.id)}" update="tabella" />
+								<ui:commandButton value="Cancella" actionListener="#{rolemanager.deleteRole(elemento.id)}" update="tabella"/>
 							</ui:column>
 						</ui:dataTable>
 					</h:form>
 					<h:form id="inserimentoForm">
-						<ui:dialog id="inserimentoDialog" widgetVar="inserimento" width="400" height="500" modal="true">
+						<ui:dialog id="inserimentoDialog" widgetVar="inserimento" width="500" height="500" modal="true">
 							<ui:ajax event="close" update=":inserimentoForm" listener="#{rolemanager.closeDialogRole}"/>
 							<ui:panel id="inserimentoDetail">
 								<h:inputHidden id="idRuolo" value="#{rolemanager.idRuolo}"/>
-								<ui:panelGrid columns="2">	
+								<ui:panelGrid columns="3">	
 									<h:outputLabel value="Nome" />
-									<ui:inputText id="nome" value="#{rolemanager.nome}" required="true" autocomplete="off" />	
+									<ui:inputText id="nome" value="#{rolemanager.nome}" required="true" requiredMessage="Nome obbligatorio"/>
+									<ui:message for="nome" />
 									<h:outputLabel value="Descrizione" />
-									<ui:inputText id="descrizione" value="#{rolemanager.descrizione}"  autocomplete="off" />
+									<ui:inputText id="descrizione" value="#{rolemanager.descrizione}"/>
 								</ui:panelGrid>
-								<ui:commandButton actionListener="#{rolemanager.saveRole}" onclick="inserimento.close();" value="Salva Ruolo"></ui:commandButton>
+								<ui:commandButton
+									process="@([id$=inserimentoForm])" 
+									actionListener="#{rolemanager.saveRole}"
+									oncomplete="if(!args.validationFailed){ PF('inserimento').hide();} else {PF('inserimento').show();}"
+									update="@([id$=inserimentoForm]) @([id$=tabellaForm])"
+									value="Salva Ruolo">
+								</ui:commandButton>
 							</ui:panel>
 						</ui:dialog>
-					<ui:commandButton onclick="PF('inserimento').show();" value="Aggiungi ruolo" update="inserimentoDetail"></ui:commandButton>
+					<ui:commandButton type="button" onclick="PF('inserimento').show();" value="Aggiungi ruolo"></ui:commandButton>
 				</h:form>
 			</fl:define>
 		</fl:composition>
