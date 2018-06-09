@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
 import it.ecommerce.business.RoleBeanLocal;
+import it.ecommerce.business.UserBeanLocal;
 import it.ecommerce.entity.Role;
 
 
@@ -20,6 +22,9 @@ public class RoleManagedBean implements Serializable {
 
 	@EJB
 	private RoleBeanLocal roleBusiness;
+	@EJB
+	private UserBeanLocal userBusinnes;
+	
 	private String nome;
 	private String descrizione;
 	private Long   idRuolo;
@@ -78,7 +83,17 @@ public class RoleManagedBean implements Serializable {
 	}
 	
 	public void deleteRole(Long id) {
-		roleBusiness.deleteRole(id);
+		Role role = roleBusiness.getRoleByID(id);
+		if (!(userBusinnes.getUsersByRole(role).size() > 0)) {
+			roleBusiness.deleteRole(id);
+		}
+		else {
+			RequestContext.getCurrentInstance().showMessageInDialog(
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+							"Attenzione", 
+							"Non puoi cancellare il ruolo perchè è già stato assegnato a degli utenti"
+			));
+		}
     }
 	
 	public Role getSelectedRole() {
