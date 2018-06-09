@@ -7,6 +7,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.SelectEvent;
 
@@ -211,8 +213,10 @@ public class UserManagedBean implements Serializable {
 		return userBusinnes.findAllUser();
 	}
 	
-	public User checkLogin(String user,String pwd) {
-		return userBusinnes.login(user,pwd);
+	public void checkLogin(String user,String pwd) {
+		FacesContext context2 = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context2.getExternalContext().getSession(true);
+        session.setAttribute("user", userBusinnes.login(user,pwd));
 	}
 	
 	public void initUser()
