@@ -3,4 +3,4 @@ CREATE TABLE `role` (
   `nome` varchar(45) NOT NULL,
   `descrizione` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
