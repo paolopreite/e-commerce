@@ -1,1 +1,0 @@
-CREATE SCHEMA `e_commerce` DEFAULT CHARACTER SET utf8mb4 ;
