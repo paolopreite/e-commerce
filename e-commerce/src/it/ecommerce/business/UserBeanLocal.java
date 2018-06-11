@@ -15,4 +15,5 @@ public interface UserBeanLocal {
 	public User getUserByID(Long id);
 	public List<User> findAllUser();
 	public User login(String user,String pwd);
+	public User findUserByPasswordHash(String username, String passwordHash);
 }

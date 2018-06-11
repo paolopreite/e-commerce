@@ -64,11 +64,28 @@ public void addUser(User u) {
 	
 	@GET
 	public User login(String user, String pwd) {
-		User u = (User) em.createQuery("SELECT u FROM User u WHERE u.username =:user1 AND u.password = :pwd1")
+		/*User u = (User) em.createQuery("SELECT u FROM User u WHERE u.username =:user1 AND u.password = :pwd1")
 		      .setParameter("user1", user)
 		      .setParameter("pwd1", pwd)
 		      .getSingleResult();
           
-		return u;
+		return u;*/
+		return null;
 	}
+
+	@Override
+	public User findUserByPasswordHash(String username, String passwordHash) {
+		Query q = em.createQuery("SELECT u FROM User u WHERE u.username = :username AND u.password = :password");
+		q.setParameter("username", username);
+		q.setParameter("password", passwordHash);
+		
+		List<User> results =  (List<User>) q.getResultList();
+		if(!results.isEmpty()) {
+			return results.get(0);
+		}
+		
+		return null;
+	}
+	
+	
 }
