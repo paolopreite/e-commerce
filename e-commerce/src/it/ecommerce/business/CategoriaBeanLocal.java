@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.Local;
 
 import it.ecommerce.entity.Categoria;
+import it.ecommerce.entity.Prodotto;
+
 
 @Local
 public interface CategoriaBeanLocal {
@@ -14,4 +16,5 @@ public interface CategoriaBeanLocal {
 	public void deleteCategoria(Long id);
 	public Categoria getCategoriaByID(Long id);
 	public List<Categoria> findAllCategorie();
+	public List<Prodotto>getProductByCategory(Categoria cat);
 }

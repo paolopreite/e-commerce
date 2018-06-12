@@ -5,8 +5,12 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.GET;
 
 import it.ecommerce.entity.Categoria;
+import it.ecommerce.entity.Prodotto;
+import it.ecommerce.entity.Role;
+import it.ecommerce.entity.User;
 
 /**
  * Session Bean implementation class CategoriaBean
@@ -48,5 +52,16 @@ public class CategoriaBean implements CategoriaBeanLocal {
 	public List<Categoria> findAllCategorie() {
 		return em.createQuery("SELECT c FROM Categoria c").getResultList();
 	}
+	
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Prodotto> getProductByCategory(Categoria categoria) {
+		return em.createQuery("SELECT u FROM Prodotto u WHERE u.categoria =:categoria")
+			      .setParameter("categoria", categoria)
+			      .getResultList();
+	}
+
+
 
 }
