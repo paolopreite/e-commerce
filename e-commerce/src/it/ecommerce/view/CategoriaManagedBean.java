@@ -4,14 +4,17 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
 import it.ecommerce.business.CategoriaBeanLocal;
 
 import it.ecommerce.entity.Categoria;
+
 
 
 
@@ -79,9 +82,22 @@ public class CategoriaManagedBean implements Serializable {
     public List<Categoria> getCategoriaList() {
 		return categoriaBusinnes.findAllCategorie();
 	}
+    
 
     public void deleteCategoria(Long id) {
-    	categoriaBusinnes.deleteCategoria(id);
+    	
+    	Categoria cat = categoriaBusinnes.getCategoriaByID(id);
+		if (!(categoriaBusinnes.getProductByCategory(cat).size() > 0)) {
+			categoriaBusinnes.deleteCategoria(id);
+		}
+		else {
+			RequestContext.getCurrentInstance().showMessageInDialog(
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+							"Attenzione", 
+							"Non puoi cancellare la categoria commerciale perchè è già stata assegnata ad alcuni prodotti"
+			));
+		}
+
     }
 	public final Long getId() {
 		return id;
