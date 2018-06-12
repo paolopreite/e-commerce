@@ -81,6 +81,20 @@
 						
 						<ui:column>
 							<f:facet name="header">
+								<h:outputText value="Role"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{elemento.role.nome}"></h:outputText>
+						</ui:column>
+						
+						<ui:column>
+							<f:facet name="header">
+								<h:outputText value="Company"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{elemento.company.ragioneSociale}"></h:outputText>
+						</ui:column>
+						
+						<ui:column>
+							<f:facet name="header">
 							<h:outputText value="Azioni"></h:outputText>
 							</f:facet>
 							<ui:commandButton value="Cancella" actionListener="#{usermanager.deleteUser(elemento.id)}" update="tabella" >

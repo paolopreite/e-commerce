@@ -54,7 +54,8 @@
 								<ui:commandButton
 									process="@([id$=inserimentoForm])" 
 									actionListener="#{rolemanager.saveRole}"
-									oncomplete="if(!args.validationFailed){ PF('inserimento').hide();} else {PF('inserimento').show();}"
+									oncomplete="if(!args.validationFailed)
+									{ PF('inserimento').hide();} else {PF('inserimento').show();}"
 									update="@([id$=inserimentoForm]) @([id$=tabellaForm])"
 									value="Salva Ruolo">
 								</ui:commandButton>
