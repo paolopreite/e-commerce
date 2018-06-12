@@ -38,7 +38,8 @@ public class CategoriaBean implements CategoriaBeanLocal {
 
 	@Override
 	public void deleteCategoria(Long id) {
-		em.remove(id);
+		Categoria r = getCategoriaByID(id);
+		  em.remove(r);
 		
 	}
 
