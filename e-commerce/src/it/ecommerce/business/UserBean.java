@@ -57,6 +57,7 @@ public class UserBean implements UserBeanLocal {
 		return em.find(User.class, id);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@GET
 	@Path(value="/user/lista")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -74,6 +75,7 @@ public class UserBean implements UserBeanLocal {
 		return u;
 	}
 
+	@SuppressWarnings("unchecked")
 	@GET
 	public List<User> getUsersByRole(Role role) {
 		return em.createQuery("SELECT u FROM User u WHERE u.role =:role")
@@ -81,6 +83,7 @@ public class UserBean implements UserBeanLocal {
 			      .getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@GET
 	public List<User> getUsersByCompany(Company company) {
 		return em.createQuery("SELECT u FROM User u WHERE u.company =:company")
