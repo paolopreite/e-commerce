@@ -132,4 +132,10 @@ public class CategoriaManagedBean implements Serializable {
 	public final void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+	
+	 public void cleanDialogCategoria()
+		{
+			this.setNome(null);
+			this.setDescrizione(null);
+		}
 }
